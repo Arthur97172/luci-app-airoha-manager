@@ -1,0 +1,954 @@
+# luci-app-airoha-manager translation template.
+# Copyright (C) 2026 Arthur97172
+# This file is distributed under the same license as the luci-app-airoha-manager package.
+#
+# Generated from this package's sources by the LuCI i18n scanner; do not edit by hand.
+# Regenerate from a luci feed root:
+#   build/i18n-scan.pl luci-app-airoha-manager | sed 's|^#: luci-app-airoha-manager/|#: |'
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1082
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:235
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:253
+msgid "%d clients"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:226
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:609
+msgid "%d cores"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:300
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:327
+msgid "%d entries"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:489
+msgid "%d flows"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:228
+msgid "%d memory regions"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:273
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:284
+msgid "%d sta"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:416
+msgid "%d used / %d free"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:457
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:472
+msgid "%s MHz (OC)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:300
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:327
+msgid "(showing 25)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:496
+msgid "+%d more"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:530
+msgid "10G PHY"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:534
+msgid "2.4 GHz Radio"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:535
+msgid "5 GHz Radio"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:536
+msgid "6 GHz Radio"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:367
+msgid "8x RISC-V via PCIe RAM"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1243
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1315
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:365
+msgid "ACTIVE"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1415
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:382
+msgid "AP MODE"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1420
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:760
+msgid "AP Mode Acceleration"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+msgid "Activated"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1527
+msgid "Airoha FlowSense"
+msgstr ""
+
+#: root/usr/share/luci/menu.d/luci-app-airoha-manager.json:3
+msgid "Airoha Manager"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:707
+msgid "Airoha SoC Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1396
+msgid "Auto-detected"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:117
+msgid "Automatic"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:576
+msgid "Automatic (Follow Curve)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:316
+msgid "BND — Hardware Offloaded"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:439
+msgid "BOUND"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:122
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:468
+msgid "Balanced"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:589
+msgid "Balanced - Good mix of noise and cooling"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:220
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:990
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:257
+msgid "Band %d"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:529
+msgid "Board (Fan Curve)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:519
+msgid "Board Temperature"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:382
+msgid "Bound"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:227
+msgid "Bound / total PPE flows"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1246
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1318
+msgid "Bridge drops Δ"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1252
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1260
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1322
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1333
+msgid "CLEAN"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:712
+msgid "CPU Frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:715
+msgid "CPU Info"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1243
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1315
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:383
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:839
+msgid "CPU PATH"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:528
+msgid "CPU Temp"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:164
+msgid "CRIT"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1347
+msgid "Click to change ping target"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:552
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:593
+msgid "Click to disable"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:552
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:593
+msgid "Click to enable"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:570
+msgid "Configure fan control mode and speed curves."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:134
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:479
+msgid "Conservative"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:133
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:572
+msgid "Control Mode"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:725
+msgid "Control Settings"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:123
+msgid "Cooling priority"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:180
+msgid "Critical"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:719
+msgid "Current Frequency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:595
+msgid "Curve Preview"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:121
+msgid "Curve is paused"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:122
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:468
+msgid "Custom"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:591
+msgid "Custom - Define your own curve"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:602
+msgid "Custom Curve Editor"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:123
+msgid "Custom temperature curve"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1415
+msgid "DETECTING"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1385
+msgid "DHCP disabled in UCI"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1270
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1366
+msgid "DROPPING"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:603
+msgid "Define 5 temperature/PWM points. The curve preview updates live as you enter values."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1404
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:518
+msgid "Disabled"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:514
+msgid "Disabled in router mode"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+msgid "Driver unavailable"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:354
+msgid "Drop"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:241
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:244
+msgid "Drop:"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1252
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1322
+msgid "ERROR"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1404
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:517
+msgid "Enabled"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1358
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:494
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:503
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:575
+msgid "Error:"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:780
+msgid "Ethernet"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:970
+msgid "FAIR"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:861
+msgid "FREQ"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1355
+msgid "Failed to set ping target"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:203
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:199
+msgid "Fair"
+msgstr ""
+
+#: root/usr/share/luci/menu.d/luci-app-airoha-manager.json:29
+msgid "Fan Control"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:134
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:587
+msgid "Fan Curve Preset"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:520
+msgid "Fan PWM"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:131
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:521
+msgid "Fan Speed"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:116
+msgid "Fixed PWM output"
+msgstr ""
+
+#: root/usr/share/luci/menu.d/luci-app-airoha-manager.json:21
+msgid "FlowSense"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:117
+msgid "Following fan curve"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:767
+msgid "Frame Engine"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:971
+msgid "GOOD"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:203
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:199
+msgid "Good"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:616
+msgid "Governor"
+msgstr ""
+
+#: root/usr/share/rpcd/acl.d/luci-app-airoha-manager.json:3
+msgid "Grant access to the Airoha management centre (NPU status, FlowSense offload & PPE monitor, fan control)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1270
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1366
+msgid "HEALTHY"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:383
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:839
+msgid "HW ACCELERATED"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:749
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:801
+msgid "HW BUFFER"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1291
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1379
+msgid "HW Buffer"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1421
+msgid "HW Flow Offload"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:328
+msgid "HW Offload"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:753
+msgid "Hardware Flow Offloading"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:180
+msgid "Healthy"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1243
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1315
+msgid "IDLE"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:750
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:803
+msgid "INTEGRITY"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:201
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:197
+msgid "Idle"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:567
+msgid "In router mode, use hardware flow offloading only"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:276
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:779
+msgid "Index"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1289
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1375
+msgid "Integrity"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:424
+msgid "Internal Switch (1G LAN3/4)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1277
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1343
+msgid "Jitter"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:426
+msgid "LAN2 (USXGMII 10G)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:751
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:805
+msgid "LATENCY"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:860
+msgid "LOAD"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1290
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1377
+msgid "Latency"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1387
+msgid "Local gateway detected"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:123
+msgid "Low noise priority"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1079
+msgid "MAX"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1396
+msgid "MODE detecting..."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:369
+msgid "Manages:"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:116
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:121
+msgid "Manual"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:577
+msgid "Manual (Fixed Speed)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:580
+msgid "Manual Fan Speed (PWM)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:620
+msgid "Max Freq"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:575
+msgid "Mode"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1256
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1329
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:967
+msgid "NO CLIENTS"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1257
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1330
+msgid "NO DATA"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1144
+msgid "NO LINK"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:733
+msgid "NPU & Offload Engine"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:226
+msgid "NPU Clock / Cores"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:383
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:839
+msgid "NPU IDLE"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:748
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:799
+msgid "NPU PATH"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1288
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1373
+msgid "NPU Path"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+#: root/usr/share/luci/menu.d/luci-app-airoha-manager.json:13
+msgid "NPU Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+msgid "NPU device ready"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:780
+msgid "New Flow"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1386
+msgid "No WAN IP detected"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:200
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:196
+msgid "No clients"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1264
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1337
+msgid "No connected clients"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:630
+msgid "No data"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:296
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:336
+msgid "No entries"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:123
+msgid "Noise and cooling balanced"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+msgid "Not Activated"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:365
+msgid "OFF"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:895
+msgid "OFFLOAD %"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:162
+msgid "OK"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:227
+msgid "Offload Statistics"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:135
+msgid "On Demand"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:480
+msgid "On-demand"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1414
+msgid "Operating Mode"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:279
+msgid "Original"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:780
+msgid "Original Flow"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1258
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1331
+msgid "POOR"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:377
+msgid "PPE Engines"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:508
+msgid "PPE FLOW MONITOR"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:520
+msgid "PPE Flow Monitor"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:774
+msgid "PPE Flow Offload Entries"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:370
+msgid "PPE init, WDMA rings, flow stats"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1423
+msgid "PPPoE Offload"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:746
+msgid "PPPoE Passthrough Offload"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:440
+msgid "PSE Port Queue Status"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:415
+msgid "PSE Shared Buffer"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:406
+msgid "PWM (0-255)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:131
+msgid "PWM output"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1499
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1503
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1512
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:673
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:677
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:686
+msgid "Pause"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:122
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:468
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:136
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:481
+msgid "Performance"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:590
+msgid "Performance - Higher speeds, lower temps"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1277
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1343
+msgid "Ping"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1349
+msgid "Ping target IP:"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1353
+msgid "Ping target changed to:"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:623
+msgid "Point %d PWM (0-255)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:617
+msgid "Point %d Temperature (°C)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:203
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:199
+msgid "Poor"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:137
+msgid "Power Save"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:482
+msgid "Powersave"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:475
+msgid "Preview"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:122
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:468
+msgid "Quiet"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:588
+msgid "Quiet - Lower speeds, higher temps"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1016
+msgid "RETRY"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1415
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:382
+msgid "ROUTER MODE"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:312
+msgid "RX Drop"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1253
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1324
+msgid "RX errors"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:517
+msgid "Real-time Trends"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:551
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:592
+msgid "Recommended to turn off in router mode"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1480
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:695
+msgid "Refresh"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1484
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:699
+msgid "Refreshing…"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:228
+msgid "Reserved Memory"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1503
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:677
+msgid "Resume"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:551
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:592
+msgid "Router mode uses hardware flow offloading"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:138
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:483
+msgid "Schedutil"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:581
+msgid "Set a fixed PWM value (0-255). 0 = Off, 255 = Full Speed"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1263
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1336
+msgid "Signal"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:277
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:779
+msgid "State"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:531
+msgid "Switch PHY"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:527
+msgid "System"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1017
+msgid "TX"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:310
+msgid "TX Drop"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1253
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1324
+msgid "TX errors"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:402
+msgid "Temperature (°C)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:525
+msgid "Temperatures"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:386
+msgid "Total"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:280
+msgid "Translated"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:512
+msgid "Turn off"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:278
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:779
+msgid "Type"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:317
+msgid "UNB — Pending / Learning"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:443
+msgid "UNBOUND"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1477
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:692
+msgid "Updated %s"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:513
+msgid "Updated automatically every 5 seconds"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:139
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:484
+msgid "Userspace"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1422
+msgid "VLAN Offload"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:739
+msgid "VLAN Tag Offload"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:514
+msgid "View real-time fan speed and system temperatures."
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:425
+msgid "WAN (USXGMII 10G)"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:163
+msgid "WARN"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1259
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1332
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:969
+msgid "WEAK"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:180
+msgid "Warning"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:533
+msgid "WiFi"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:291
+msgid "devmem not available on this build"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:498
+msgid "no entries"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1277
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1343
+msgid "samples"
+msgstr ""
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:509
+msgid "· live refresh 5s"
+msgstr ""

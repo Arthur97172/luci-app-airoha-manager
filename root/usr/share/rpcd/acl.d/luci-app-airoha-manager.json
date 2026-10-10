@@ -1,0 +1,51 @@
+{
+	"luci-app-airoha-manager": {
+		"description": "Grant access to the Airoha management centre (NPU status, FlowSense offload & PPE monitor, fan control)",
+		"read": {
+			"ubus": {
+				"luci.airoha_manager": [ "getStatus", "getPpeEntries", "getPpeSummary", "getTokenInfo", "getFrameEngine", "getVlanOffload", "getPppoeOffload", "getFlowOffload", "getApModeOffload", "getDeviceMode", "getOverview", "getTxStats", "getWanHealth", "getJitterResult", "getWifiStats", "getBridgeStats", "getNpuBypass", "getConflictAlerts", "getEthStats", "getPingTarget", "getFanStatus", "getFanCurve", "getAllCurves" ]
+			},
+			"uci": [ "fan", "npu-monitor" ],
+			"file": {
+				"/sys/kernel/debug/ppe/entries": [ "read" ],
+				"/sys/kernel/debug/ppe/bind": [ "read" ],
+				"/sys/devices/system/cpu/cpufreq/policy0/*": [ "read" ],
+				"/dev/mem": [ "read" ],
+				"/sys/kernel/debug/ieee80211/*/mt76/token_info": [ "read" ],
+				"/sys/kernel/debug/ieee80211/*/mt76/tx_stats": [ "read" ],
+				"/sys/class/hwmon/hwmon5/*": [ "read" ],
+				"/proc/sys/net/bridge/bridge-nf-filter-vlan-tagged": [ "read" ],
+				"/proc/sys/net/bridge/bridge-nf-filter-pppoe-tagged": [ "read" ],
+				"/proc/sys/net/bridge/bridge-nf-call-iptables": [ "read" ],
+				"/proc/sys/net/bridge/bridge-nf-call-ip6tables": [ "read" ],
+				"/proc/sys/net/bridge/bridge-nf-call-arptables": [ "read" ],
+				"/proc/sys/net/bridge/bridge-nf-pass-vlan-input-dev": [ "read" ],
+				"/proc/sys/net/netfilter/nf_conntrack_pptp_helper": [ "read" ]
+			}
+		},
+		"write": {
+			"ubus": {
+				"luci.airoha_manager": [ "setGovernor", "setMaxFreq", "setVlanOffload", "setPppoeOffload", "setFlowOffload", "setApModeOffload", "setPingTarget", "setFanMode", "setManualPwm", "setFanPreset", "setCustomCurve" ],
+				"uci": [ "set", "commit" ]
+			},
+			"uci": {
+				"fan": [ "write" ],
+				"npu-monitor": [ "write" ]
+			},
+			"file": {
+				"/sys/devices/system/cpu/cpufreq/policy0/scaling_governor": [ "write" ],
+				"/sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq": [ "write" ],
+				"/proc/sys/net/bridge/bridge-nf-filter-vlan-tagged": [ "write" ],
+				"/proc/sys/net/bridge/bridge-nf-filter-pppoe-tagged": [ "write" ],
+				"/proc/sys/net/bridge/bridge-nf-call-iptables": [ "write" ],
+				"/proc/sys/net/bridge/bridge-nf-call-ip6tables": [ "write" ],
+				"/proc/sys/net/bridge/bridge-nf-call-arptables": [ "write" ],
+				"/proc/sys/net/bridge/bridge-nf-pass-vlan-input-dev": [ "write" ],
+				"/proc/sys/net/netfilter/nf_conntrack_pptp_helper": [ "write" ],
+				"/etc/sysctl.d/12-apmode-offload.conf": [ "write" ],
+				"/etc/sysctl.d/14-vlan-offload.conf": [ "write" ],
+				"/etc/sysctl.d/13-pppoe-offload.conf": [ "write" ]
+			}
+		}
+	}
+}

@@ -1,0 +1,27 @@
+#!/bin/sh
+# apk treats /etc as a configuration directory: when a file it is about to
+# install already exists there with matching content, apk keeps the file it
+# finds -- mode included -- and reports nothing. Both init scripts this package
+# installs are byte-identical to the ones luci-app-airoha-fancontrol and
+# luci-app-airoha-flowsense shipped, and earlier releases of those shipped them
+# 0664, so a device that first received them from such a release keeps a
+# non-executable /etc/init.d/fan and /etc/init.d/npu-jitter however often the
+# package is reinstalled. default_postinst in lib/functions.sh enables and
+# starts every /etc/init.d/ file the package installs, and fails there with
+# "Permission denied" on each such install.
+#
+# Those uci-defaults run before that loop, so repairing the modes here is what
+# lets the services come up on the install that fixes the device. The postinst
+# repeats the chmod for the paths where this script does not run.
+#
+# /usr/libexec/npu-jitter-daemon and /usr/libexec/rpcd/luci.airoha_manager are
+# outside /etc and apk does correct their modes, but every executable this
+# package ships is repaired together so that none of them depends on that
+# behaviour.
+
+chmod 0755 /etc/init.d/fan \
+	/etc/init.d/npu-jitter \
+	/usr/libexec/npu-jitter-daemon \
+	/usr/libexec/rpcd/luci.airoha_manager 2>/dev/null
+
+exit 0

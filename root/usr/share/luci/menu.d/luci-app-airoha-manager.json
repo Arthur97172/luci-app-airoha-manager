@@ -1,0 +1,39 @@
+{
+	"admin/status/airoha-manager": {
+		"title": "Airoha Manager",
+		"order": 15,
+		"action": {
+			"type": "firstchild"
+		},
+		"depends": {
+			"acl": [ "luci-app-airoha-manager" ]
+		}
+	},
+	"admin/status/airoha-manager/npu": {
+		"title": "NPU Status",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "airoha_manager/npu"
+		}
+	},
+	"admin/status/airoha-manager/flowsense": {
+		"title": "FlowSense",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "airoha_manager/flowsense"
+		}
+	},
+	"admin/status/airoha-manager/fan": {
+		"title": "Fan Control",
+		"order": 3,
+		"action": {
+			"type": "view",
+			"path": "airoha_manager/fan"
+		},
+		"depends": {
+			"uci": { "fan": true }
+		}
+	}
+}

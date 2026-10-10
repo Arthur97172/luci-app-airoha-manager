@@ -1,0 +1,956 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: luci-app-airoha-manager\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_Hans\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1082
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:235
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:253
+msgid "%d clients"
+msgstr "%d 个客户端"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:226
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:609
+msgid "%d cores"
+msgstr "%d 核"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:300
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:327
+msgid "%d entries"
+msgstr "%d 条记录"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:489
+msgid "%d flows"
+msgstr "%d 条流"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:228
+msgid "%d memory regions"
+msgstr "%d 个内存区域"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:273
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:284
+msgid "%d sta"
+msgstr "%d 个客户端"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:416
+msgid "%d used / %d free"
+msgstr "%d 已用 / %d 空闲"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:457
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:472
+msgid "%s MHz (OC)"
+msgstr "%s MHz（超频）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:300
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:327
+msgid "(showing 25)"
+msgstr "（显示 25 条）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:496
+msgid "+%d more"
+msgstr "另有 %d 条"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:530
+msgid "10G PHY"
+msgstr "10G PHY"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:534
+msgid "2.4 GHz Radio"
+msgstr "2.4 GHz 射频"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:535
+msgid "5 GHz Radio"
+msgstr "5 GHz 射频"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:536
+msgid "6 GHz Radio"
+msgstr "6 GHz 射频"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:367
+msgid "8x RISC-V via PCIe RAM"
+msgstr "8 个 RISC-V 核心（经 PCIe RAM）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1243
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1315
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:365
+msgid "ACTIVE"
+msgstr "活动"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1415
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:382
+msgid "AP MODE"
+msgstr "AP 模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1420
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:760
+msgid "AP Mode Acceleration"
+msgstr "AP 模式加速"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+msgid "Activated"
+msgstr "已激活"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1527
+msgid "Airoha FlowSense"
+msgstr "Airoha 流程传感器"
+
+#: root/usr/share/luci/menu.d/luci-app-airoha-manager.json:3
+msgid "Airoha Manager"
+msgstr "Airoha管理中心"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:707
+msgid "Airoha SoC Status"
+msgstr "Airoha SoC 状态"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1396
+msgid "Auto-detected"
+msgstr "自动检测"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:117
+msgid "Automatic"
+msgstr "自动"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:576
+msgid "Automatic (Follow Curve)"
+msgstr "自动（跟随曲线）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:316
+msgid "BND — Hardware Offloaded"
+msgstr "BND — 硬件卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:439
+msgid "BOUND"
+msgstr "已绑定"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:122
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:468
+msgid "Balanced"
+msgstr "均衡"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:589
+msgid "Balanced - Good mix of noise and cooling"
+msgstr "均衡 - 噪音与散热兼顾"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:220
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:990
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:257
+msgid "Band %d"
+msgstr "频段 %d"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:529
+msgid "Board (Fan Curve)"
+msgstr "主板（风扇曲线）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:519
+msgid "Board Temperature"
+msgstr "主板温度"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:382
+msgid "Bound"
+msgstr "已绑定"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:227
+msgid "Bound / total PPE flows"
+msgstr "已绑定 / PPE 流总数"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1246
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1318
+msgid "Bridge drops Δ"
+msgstr "网桥丢包 Δ"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1252
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1260
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1322
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1333
+msgid "CLEAN"
+msgstr "正常"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:712
+msgid "CPU Frequency"
+msgstr "CPU 频率"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:715
+msgid "CPU Info"
+msgstr "CPU 信息"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1243
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1315
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:383
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:839
+msgid "CPU PATH"
+msgstr "CPU 路径"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:528
+msgid "CPU Temp"
+msgstr "CPU 温度"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:164
+msgid "CRIT"
+msgstr "严重"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1347
+msgid "Click to change ping target"
+msgstr "点击更改 Ping 目标"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:552
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:593
+msgid "Click to disable"
+msgstr "点击禁用"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:552
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:593
+msgid "Click to enable"
+msgstr "点击启用"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:570
+msgid "Configure fan control mode and speed curves."
+msgstr "配置风扇控制模式与转速曲线。"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:134
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:479
+msgid "Conservative"
+msgstr "保守模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:133
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:572
+msgid "Control Mode"
+msgstr "控制模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:725
+msgid "Control Settings"
+msgstr "控制设置"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:123
+msgid "Cooling priority"
+msgstr "散热优先"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:180
+msgid "Critical"
+msgstr "严重"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:719
+msgid "Current Frequency"
+msgstr "当前频率"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:595
+msgid "Curve Preview"
+msgstr "曲线预览"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:121
+msgid "Curve is paused"
+msgstr "曲线已暂停"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:122
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:468
+msgid "Custom"
+msgstr "自定义"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:591
+msgid "Custom - Define your own curve"
+msgstr "自定义 - 自行定义曲线"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:602
+msgid "Custom Curve Editor"
+msgstr "自定义曲线编辑器"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:123
+msgid "Custom temperature curve"
+msgstr "自定义温度曲线"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1415
+msgid "DETECTING"
+msgstr "检测中"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1385
+msgid "DHCP disabled in UCI"
+msgstr "UCI 中已禁用 DHCP"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1270
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1366
+msgid "DROPPING"
+msgstr "丢弃中"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:603
+msgid "Define 5 temperature/PWM points. The curve preview updates live as you enter values."
+msgstr "定义 5 个温度/PWM 点。输入数值时曲线预览会实时更新。"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1404
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:518
+msgid "Disabled"
+msgstr "已禁用"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:514
+msgid "Disabled in router mode"
+msgstr "路由模式下禁用"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+msgid "Driver unavailable"
+msgstr "驱动不可用"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:354
+msgid "Drop"
+msgstr "丢包"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:241
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:244
+msgid "Drop:"
+msgstr "丢包："
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1252
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1322
+msgid "ERROR"
+msgstr "错误"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1404
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:517
+msgid "Enabled"
+msgstr "已启用"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1358
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:494
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:503
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:575
+msgid "Error:"
+msgstr "错误："
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:780
+msgid "Ethernet"
+msgstr "以太网"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:970
+msgid "FAIR"
+msgstr "一般"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:861
+msgid "FREQ"
+msgstr "频率"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1355
+msgid "Failed to set ping target"
+msgstr "设置 Ping 目标失败"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:203
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:199
+msgid "Fair"
+msgstr "一般"
+
+#: root/usr/share/luci/menu.d/luci-app-airoha-manager.json:29
+msgid "Fan Control"
+msgstr "风扇控制"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:134
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:587
+msgid "Fan Curve Preset"
+msgstr "风扇曲线预设"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:520
+msgid "Fan PWM"
+msgstr "风扇 PWM"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:131
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:521
+msgid "Fan Speed"
+msgstr "风扇转速"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:116
+msgid "Fixed PWM output"
+msgstr "固定 PWM 输出"
+
+#: root/usr/share/luci/menu.d/luci-app-airoha-manager.json:21
+msgid "FlowSense"
+msgstr "流程传感器"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:117
+msgid "Following fan curve"
+msgstr "跟随风扇曲线"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:767
+msgid "Frame Engine"
+msgstr "帧引擎"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:971
+msgid "GOOD"
+msgstr "良好"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:203
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:199
+msgid "Good"
+msgstr "良好"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:616
+msgid "Governor"
+msgstr "调频策略"
+
+#: root/usr/share/rpcd/acl.d/luci-app-airoha-manager.json:3
+msgid "Grant access to the Airoha management centre (NPU status, FlowSense offload & PPE monitor, fan control)"
+msgstr "授予 Airoha 管理中心（NPU 状态、流程传感器卸载与 PPE 监控、风扇控制）的访问权限"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1270
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1366
+msgid "HEALTHY"
+msgstr "健康"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:383
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:839
+msgid "HW ACCELERATED"
+msgstr "硬件加速"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:749
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:801
+msgid "HW BUFFER"
+msgstr "硬件缓冲"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1291
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1379
+msgid "HW Buffer"
+msgstr "硬件缓冲"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1421
+msgid "HW Flow Offload"
+msgstr "硬件流卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:328
+msgid "HW Offload"
+msgstr "硬件卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:753
+msgid "Hardware Flow Offloading"
+msgstr "硬件流卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:180
+msgid "Healthy"
+msgstr "健康"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1243
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1315
+msgid "IDLE"
+msgstr "空闲"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:750
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:803
+msgid "INTEGRITY"
+msgstr "完整性"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:201
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:197
+msgid "Idle"
+msgstr "空闲"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:567
+msgid "In router mode, use hardware flow offloading only"
+msgstr "路由模式下请仅使用硬件流卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:276
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:779
+msgid "Index"
+msgstr "索引"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1289
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1375
+msgid "Integrity"
+msgstr "完整性"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:424
+msgid "Internal Switch (1G LAN3/4)"
+msgstr "内置交换机（1G LAN3/4）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1277
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1343
+msgid "Jitter"
+msgstr "抖动"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:426
+msgid "LAN2 (USXGMII 10G)"
+msgstr "LAN2（USXGMII 10G）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:751
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:805
+msgid "LATENCY"
+msgstr "延迟"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:860
+msgid "LOAD"
+msgstr "负载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1290
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1377
+msgid "Latency"
+msgstr "延迟"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1387
+msgid "Local gateway detected"
+msgstr "已检测到本地网关"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:123
+msgid "Low noise priority"
+msgstr "低噪音优先"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1079
+msgid "MAX"
+msgstr "最大"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1396
+msgid "MODE detecting..."
+msgstr "模式检测中..."
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:369
+msgid "Manages:"
+msgstr "管理："
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:116
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:121
+msgid "Manual"
+msgstr "手动"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:577
+msgid "Manual (Fixed Speed)"
+msgstr "手动（固定转速）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:580
+msgid "Manual Fan Speed (PWM)"
+msgstr "手动风扇转速（PWM）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:620
+msgid "Max Freq"
+msgstr "最高频率"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:575
+msgid "Mode"
+msgstr "模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1256
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1329
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:967
+msgid "NO CLIENTS"
+msgstr "无客户端"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1257
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1330
+msgid "NO DATA"
+msgstr "无数据"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1144
+msgid "NO LINK"
+msgstr "无连接"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:733
+msgid "NPU & Offload Engine"
+msgstr "NPU 与卸载引擎"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:226
+msgid "NPU Clock / Cores"
+msgstr "NPU 频率 / 核心"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:383
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:839
+msgid "NPU IDLE"
+msgstr "NPU 空闲"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:748
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:799
+msgid "NPU PATH"
+msgstr "NPU 路径"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1288
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1373
+msgid "NPU Path"
+msgstr "NPU 路径"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+#: root/usr/share/luci/menu.d/luci-app-airoha-manager.json:13
+msgid "NPU Status"
+msgstr "NPU状态"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+msgid "NPU device ready"
+msgstr "NPU 设备就绪"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:780
+msgid "New Flow"
+msgstr "新流"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1386
+msgid "No WAN IP detected"
+msgstr "未检测到 WAN IP"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:200
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:196
+msgid "No clients"
+msgstr "无客户端"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1264
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1337
+msgid "No connected clients"
+msgstr "无已连接客户端"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:630
+msgid "No data"
+msgstr "无数据"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:296
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:336
+msgid "No entries"
+msgstr "无记录"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:123
+msgid "Noise and cooling balanced"
+msgstr "噪音与散热均衡"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+msgid "Not Activated"
+msgstr "未激活"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:365
+msgid "OFF"
+msgstr "关闭"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:895
+msgid "OFFLOAD %"
+msgstr "卸载 %"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:162
+msgid "OK"
+msgstr "正常"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:227
+msgid "Offload Statistics"
+msgstr "卸载统计"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:135
+msgid "On Demand"
+msgstr "按需模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:480
+msgid "On-demand"
+msgstr "按需模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1414
+msgid "Operating Mode"
+msgstr "工作模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:279
+msgid "Original"
+msgstr "原始"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:780
+msgid "Original Flow"
+msgstr "原始流"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1258
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1331
+msgid "POOR"
+msgstr "差"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:377
+msgid "PPE Engines"
+msgstr "PPE 引擎"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:508
+msgid "PPE FLOW MONITOR"
+msgstr "PPE 流监控"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:520
+msgid "PPE Flow Monitor"
+msgstr "PPE 流监控"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:774
+msgid "PPE Flow Offload Entries"
+msgstr "PPE 流卸载表项"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:370
+msgid "PPE init, WDMA rings, flow stats"
+msgstr "PPE 初始化、WDMA 环、流统计"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1423
+msgid "PPPoE Offload"
+msgstr "PPPoE 卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:746
+msgid "PPPoE Passthrough Offload"
+msgstr "PPPoE 透传卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:440
+msgid "PSE Port Queue Status"
+msgstr "PSE 端口队列状态"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:415
+msgid "PSE Shared Buffer"
+msgstr "PSE 共享缓冲"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:406
+msgid "PWM (0-255)"
+msgstr "PWM（0-255）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:131
+msgid "PWM output"
+msgstr "PWM 输出"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1499
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1503
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1512
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:673
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:677
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:686
+msgid "Pause"
+msgstr "暂停"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:122
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:468
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:136
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:481
+msgid "Performance"
+msgstr "性能"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:590
+msgid "Performance - Higher speeds, lower temps"
+msgstr "性能 - 转速更高，温度更低"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1277
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1343
+msgid "Ping"
+msgstr "Ping"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1349
+msgid "Ping target IP:"
+msgstr "Ping 目标 IP："
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1353
+msgid "Ping target changed to:"
+msgstr "Ping 目标已更改为："
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:623
+msgid "Point %d PWM (0-255)"
+msgstr "第 %d 点 PWM（0-255）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:617
+msgid "Point %d Temperature (°C)"
+msgstr "第 %d 点温度（°C）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:203
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:199
+msgid "Poor"
+msgstr "差"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:137
+msgid "Power Save"
+msgstr "省电模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:482
+msgid "Powersave"
+msgstr "省电模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:475
+msgid "Preview"
+msgstr "预览"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:122
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:468
+msgid "Quiet"
+msgstr "静音"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:588
+msgid "Quiet - Lower speeds, higher temps"
+msgstr "静音 - 转速更低，温度更高"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1016
+msgid "RETRY"
+msgstr "重试"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1415
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:382
+msgid "ROUTER MODE"
+msgstr "路由模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:312
+msgid "RX Drop"
+msgstr "RX 丢包"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1253
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1324
+msgid "RX errors"
+msgstr "RX 错误"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:517
+msgid "Real-time Trends"
+msgstr "实时趋势"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:551
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:592
+msgid "Recommended to turn off in router mode"
+msgstr "建议在路由模式下关闭"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1480
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:695
+msgid "Refresh"
+msgstr "刷新"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1484
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:699
+msgid "Refreshing…"
+msgstr "刷新中…"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:228
+msgid "Reserved Memory"
+msgstr "保留内存"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1503
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:677
+msgid "Resume"
+msgstr "恢复"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:551
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:592
+msgid "Router mode uses hardware flow offloading"
+msgstr "路由模式使用硬件流卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:138
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:483
+msgid "Schedutil"
+msgstr "调度模式"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:581
+msgid "Set a fixed PWM value (0-255). 0 = Off, 255 = Full Speed"
+msgstr "设置固定 PWM 值（0-255）。0 = 关闭，255 = 全速"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1263
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1336
+msgid "Signal"
+msgstr "信号"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:277
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:779
+msgid "State"
+msgstr "状态"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:531
+msgid "Switch PHY"
+msgstr "切换 PHY"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:527
+msgid "System"
+msgstr "系统"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1017
+msgid "TX"
+msgstr "TX"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:310
+msgid "TX Drop"
+msgstr "TX 丢包"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1253
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1324
+msgid "TX errors"
+msgstr "TX 错误"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:402
+msgid "Temperature (°C)"
+msgstr "温度（°C）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:525
+msgid "Temperatures"
+msgstr "温度"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:386
+msgid "Total"
+msgstr "总计"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:280
+msgid "Translated"
+msgstr "转换后"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:512
+msgid "Turn off"
+msgstr "请关闭"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:278
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:779
+msgid "Type"
+msgstr "类型"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:317
+msgid "UNB — Pending / Learning"
+msgstr "UNB — 待定 / 学习中"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:443
+msgid "UNBOUND"
+msgstr "未绑定"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1477
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:692
+msgid "Updated %s"
+msgstr "更新于 %s"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:513
+msgid "Updated automatically every 5 seconds"
+msgstr "每 5 秒自动更新"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:139
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:484
+msgid "Userspace"
+msgstr "用户空间"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1422
+msgid "VLAN Offload"
+msgstr "VLAN 卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:739
+msgid "VLAN Tag Offload"
+msgstr "VLAN 标签卸载"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:514
+msgid "View real-time fan speed and system temperatures."
+msgstr "查看实时风扇转速与系统温度。"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:425
+msgid "WAN (USXGMII 10G)"
+msgstr "WAN（USXGMII 10G）"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:163
+msgid "WARN"
+msgstr "警告"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1259
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1332
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:969
+msgid "WEAK"
+msgstr "弱"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:180
+msgid "Warning"
+msgstr "警告"
+
+#: htdocs/luci-static/resources/view/airoha_manager/fan.js:533
+msgid "WiFi"
+msgstr "WiFi"
+
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:291
+msgid "devmem not available on this build"
+msgstr "此构建不支持 devmem"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:498
+msgid "no entries"
+msgstr "无记录"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1277
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1343
+msgid "samples"
+msgstr "采样"
+
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:509
+msgid "· live refresh 5s"
+msgstr "· 每 5 秒实时刷新"

@@ -1,0 +1,9 @@
+# CLAUDE.MD holds a plaintext GitHub personal access token and must never be
+# committed, published or packaged.
+CLAUDE.MD
+
+# Editor and OS noise
+*.swp
+*.swo
+*~
+.DS_Store
