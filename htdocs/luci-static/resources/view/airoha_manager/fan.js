@@ -27,6 +27,7 @@ var themeCSS = '\
 .fan-dashboard{--fan-blue:#00c8ff;--fan-green:#00cc44;--fan-amber:#f5a623;--fan-red:#d0021b;--airoha-font-ui:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans CJK SC",sans-serif;--airoha-font-mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",Menlo,monospace;font-family:var(--airoha-font-ui);font-size:13px;line-height:1.5;letter-spacing:0;color:var(--fan-text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}\
 .fan-dashboard h2{margin:0 0 14px;font-family:var(--airoha-font-ui);font-size:22px;line-height:1.3;font-weight:600;letter-spacing:0;color:var(--fan-text)}\
 .fan-dashboard .cbi-button,.fan-dashboard .cbi-input-select,.fan-dashboard input{font-family:var(--airoha-font-ui);font-size:13px!important;line-height:1.4;letter-spacing:0}\
+.fan-dashboard .soc-muted{color:var(--fan-muted)}\
 .fan-summary-grid{display:grid;grid-template-columns:repeat(4,minmax(150px,1fr));gap:8px;margin:0 0 12px}\
 .fan-summary-card,.fan-panel,.fan-chart-card,.fan-temp-card{background:var(--fan-card-bg);border:1px solid var(--fan-border);border-radius:8px;box-sizing:border-box}\
 .fan-summary-card{border-left:3px solid var(--fan-accent,var(--fan-border));padding:10px 14px;min-height:82px;display:flex;flex-direction:column;justify-content:center}\
@@ -289,7 +290,7 @@ function temperatureGroup(title, entries) {
 }
 
 var settingsCSS = '\
-.fan-settings{--fan-blue:#00c8ff;--fan-green:#00cc44;--fan-amber:#f5a623;--fan-red:#d0021b;max-width:1180px;margin:0 auto;padding-bottom:20px}\
+.fan-settings{--fan-blue:#00c8ff;--fan-green:#00cc44;--fan-amber:#f5a623;--fan-red:#d0021b;padding-bottom:20px}\
 .fan-settings .cbi-map-descr{position:relative;margin:0 0 16px;padding:15px 18px 15px 20px;border:1px solid var(--fan-border);border-left:4px solid var(--fan-blue);border-radius:10px;background:linear-gradient(135deg,var(--fan-card-bg),var(--fan-input-bg));box-shadow:0 5px 18px var(--fan-shadow);color:var(--fan-muted);font-size:12px;line-height:1.6}\
 .fan-settings .cbi-section{position:relative;background:var(--fan-card-bg);border:1px solid var(--fan-border);border-radius:12px;padding:18px;margin:14px 0!important;box-sizing:border-box;box-shadow:0 5px 18px var(--fan-shadow);overflow:hidden}\
 .fan-settings .cbi-section>h3{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;letter-spacing:.2px;margin:0 0 14px;padding:0 0 12px;border-bottom:1px solid var(--fan-border);color:var(--fan-text)}\
@@ -510,7 +511,30 @@ return view.extend({
 		injectSettingsCSS();
 		restoreHistory();
 
+		/* Same refresh affordance as the NPU and FlowSense tabs: a button that
+		 * re-runs the poll's fetch and a timestamp beside it. fetchData is
+		 * assigned further down, but the click handler only reads it when the
+		 * button is pressed, so the closure is already bound by then. */
+		var updatedEl = null;
+
+		function markUpdated() {
+			if (updatedEl)
+				updatedEl.textContent = _('Updated %s').format(new Date().toLocaleTimeString());
+		}
+
+		var refreshBtn = E('button', { 'type': 'button', 'class': 'cbi-button cbi-button-action' }, _('Refresh'));
+		refreshBtn.addEventListener('click', function() {
+			var self = refreshBtn, orig = self.textContent;
+			self.disabled = true;
+			self.textContent = _('Refreshing…');
+			var done = function() { self.disabled = false; self.textContent = orig; };
+			Promise.resolve(fetchData()).then(done, done);
+		});
+
+		updatedEl = E('span', { 'class': 'soc-muted' }, '');
+
 		var dashboard = E('div', { 'class': 'cbi-map fan-dashboard' }, [
+			E('div', { 'style': 'display:flex;align-items:center;gap:12px;margin:0 0 12px' }, [ refreshBtn, updatedEl ]),
 			E('div', { 'class': 'cbi-map-descr' }, _('View real-time fan speed and system temperatures.')),
 			renderSummary(status),
 			E('div', { 'class': 'fan-panel' }, [
@@ -555,6 +579,7 @@ return view.extend({
 				values.forEach(function(item) { var el = document.getElementById(item[0]); if (el) el.textContent = item[1]; });
 				appendHistory(current);
 				drawAllCharts();
+				markUpdated();
 			}, this));
 		}, this);
 

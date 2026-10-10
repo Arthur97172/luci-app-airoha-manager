@@ -704,7 +704,6 @@ return view.extend({
 		updatedEl = E('span', { 'class': 'soc-muted' }, '');
 
 		var view = E('div',{'class':'cbi-map npu-dashboard'},[
-			E('h2',{},_('Airoha SoC Status')),
 			E('div',{'style':'display:flex;align-items:center;gap:12px;margin:0 0 12px'},[ refreshBtn, updatedEl ]),
 
 			// CPU Frequency

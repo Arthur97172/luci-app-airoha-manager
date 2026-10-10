@@ -13,12 +13,6 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
-
   build:
     runs-on: ubuntu-latest
     strategy:
