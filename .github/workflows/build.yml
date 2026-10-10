@@ -130,8 +130,8 @@ jobs:
             自动编译的插件包（版本 ${{ steps.version.outputs.PKGVER }}）
 
             - `.apk`（apk）— OpenWrt/ImmortalWrt 25.12
-            - 架构 `all`：纯 Lua 包，只支持Airoha-an7581平台
             - `luci-i18n-airoha-manager-zh-cn`：中文翻译包，单独安装；不装则界面显示英文
+            - 只支持Airoha-an7581平台架构
           files: artifacts/*
           token: ${{ github.token }}
           make_latest: true

@@ -2,7 +2,7 @@
 
 # Airoha管理中心
 
-`luci-app-airoha-manager` 是面向 Airoha AN7581 / W1700K 一类设备的 LuCI 管理应用。它把原先三个独立的应用 —— `luci-app-airoha-npu`、`luci-app-airoha-flowsense`、`luci-app-airoha-fancontrol` —— 合并为一个软件包、一个菜单入口，位于 **状态 → Airoha管理中心**。
+`luci-app-airoha-manager` 是面向 Airoha AN7581 / W1700K 一类设备的 LuCI 管理应用。它把原先三个独立的应用 —— `luci-app-airoha-npu`、`luci-app-airoha-flowsense`、`luci-app-airoha-fancontrol` —— 合并为一个软件包、一个菜单入口，位于 **服务 → Airoha管理中心**。
 
 界面语言自动跟随 LuCI：LuCI 为英文时显示英文，为简体中文时显示简体中文。中文界面由独立的语言包 `luci-i18n-airoha-manager-zh-cn` 提供，可单独编译、单独安装。
 
@@ -60,7 +60,7 @@ apk add --allow-untrusted luci-i18n-airoha-manager-zh-cn-*.apk
 
 第二条是简体中文语言包，只有需要中文界面时才安装；使用英文界面只需第一条。
 
-安装完成后，菜单会出现在 **状态 → Airoha管理中心**。postinst 会自动启用并启动 `fan` 与 `npu-jitter` 两个服务、重载 rpcd，并清理 LuCI 缓存。若菜单没有立即出现，刷新页面或重新登录即可。
+安装完成后，菜单会出现在 **服务 → Airoha管理中心**。postinst 会自动启用并启动 `fan` 与 `npu-jitter` 两个服务、重载 rpcd，并清理 LuCI 缓存。若菜单没有立即出现，刷新页面或重新登录即可。
 
 ### 方式二：从源码编译
 

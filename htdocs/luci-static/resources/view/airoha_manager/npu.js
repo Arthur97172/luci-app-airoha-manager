@@ -5,7 +5,6 @@
 'require ui';
 
 var callNpuStatus = rpc.declare({ object: 'luci.airoha_manager', method: 'getStatus' });
-var callPpeEntries = rpc.declare({ object: 'luci.airoha_manager', method: 'getPpeEntries' });
 var callTokenInfo = rpc.declare({ object: 'luci.airoha_manager', method: 'getTokenInfo' });
 var callFrameEngine = rpc.declare({ object: 'luci.airoha_manager', method: 'getFrameEngine' });
 var callSetGovernor = rpc.declare({ object: 'luci.airoha_manager', method: 'setGovernor', params: ['governor'] });
@@ -43,9 +42,6 @@ var themeCSS = '\
 .npu-summary-sub{font-size:12px;line-height:1.4;color:var(--soc-muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\
 .npu-section{background:var(--soc-card-bg);border:1px solid var(--soc-border);border-radius:8px;padding:14px;margin:12px 0!important}\
 .npu-section>h3{font-size:16px;line-height:1.4;font-weight:600;letter-spacing:0;margin:0 0 12px;padding:0 0 8px;border-bottom:1px solid var(--soc-border);color:var(--soc-text)}\
-.npu-section-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px;padding:0 0 8px;border-bottom:1px solid var(--soc-border)}\
-.npu-section-heading>h3{font-size:16px;line-height:1.4;font-weight:600;letter-spacing:0;margin:0;padding:0;border:0;color:var(--soc-text)}\
-.npu-pause-button{min-width:72px;flex:0 0 auto;padding:4px 12px!important}\
 .npu-section h4{font-size:14px;line-height:1.4;font-weight:600;letter-spacing:0;margin-top:14px!important;padding-top:12px;border-top:1px solid var(--soc-border)}\
 .npu-details-table{margin:0}\
 .cpu-panel-grid{display:grid;grid-template-columns:minmax(250px,.85fr) minmax(360px,1.15fr);gap:8px}\
@@ -73,9 +69,6 @@ var themeCSS = '\
 .npu-frame-row{font-size:12px;line-height:1.45}\
 .npu-frame-status{font-size:10px;line-height:1.4;font-weight:600}\
 .npu-subsection-title{font-size:13px;line-height:1.4;font-weight:600}\
-.npu-flow-table{margin:0;display:block;overflow-x:auto;white-space:nowrap;font-family:var(--airoha-font-mono);font-size:12px;line-height:1.5;font-variant-numeric:tabular-nums}\
-.npu-flow-table th{font-family:var(--airoha-font-ui);font-size:12px;font-weight:600;letter-spacing:0}\
-.npu-flow-table tr.npu-bnd-row td,.npu-flow-table tr.npu-bnd-row .label-success{color:var(--npu-bnd-text)!important;font-weight:600}\
 .offload-row{display:flex;align-items:center;justify-content:space-evenly;flex-wrap:wrap;gap:12px;padding:10px 0}\
 .offload-row{display:grid;grid-template-columns:repeat(4,minmax(175px,1fr));gap:8px;padding:0;margin:12px 0}\
 .offload-item{background:var(--soc-card-bg);border:1px solid var(--soc-border);border-left:3px solid var(--soc-border);border-radius:12px;padding:11px 14px;min-width:0;min-height:58px;box-sizing:border-box;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:12px}\
@@ -132,8 +125,8 @@ function injectCSS() {
 	_lastDarkMode = dark;
 
 	var vars = dark
-		? ':root{--soc-card-bg:#1e1e1e;--soc-border:#333;--soc-muted:#999;--soc-text:#e0e0e0;--soc-bar-track:#333;--npu-bnd-text:#86efac}'
-		: ':root{--soc-card-bg:#fff;--soc-border:#d0d0d0;--soc-muted:#666;--soc-text:#222;--soc-bar-track:#e0e0e0;--npu-bnd-text:#15803d}';
+		? ':root{--soc-card-bg:#1e1e1e;--soc-border:#333;--soc-muted:#999;--soc-text:#e0e0e0;--soc-bar-track:#333}'
+		: ':root{--soc-card-bg:#fff;--soc-border:#d0d0d0;--soc-muted:#666;--soc-text:#222;--soc-bar-track:#e0e0e0}';
 	el.textContent = themeCSS + vars;
 }
 
@@ -623,21 +616,6 @@ function buildControlSettingsContent(st) {
 	]);
 }
 
-/* ── PPE Table ── */
-function renderPpeRows(entries) {
-	if (!entries || !entries.length)
-		return [ E('tr', {}, [
-			E('td', { 'class': 'td', 'colspan': '6', 'style': 'text-align:center;color:var(--soc-muted)' }, _('No data'))
-		]) ];
-	return entries.slice(0,100).map(function(e) {
-		var eth = e.eth||''; if(eth==='00:00:00:00:00:00->00:00:00:00:00:00') eth='-';
-		return E('tr',{'class':'tr '+(e.state==='BND'?'npu-bnd-row':'')},[
-			E('td',{'class':'td'},e.index), E('td',{'class':'td'},E('span',{'class':e.state==='BND'?'label-success':''},e.state)),
-			E('td',{'class':'td'},e.type), E('td',{'class':'td'},e.orig||'-'), E('td',{'class':'td'},e.new_flow||'-'), E('td',{'class':'td'},eth)
-		]);
-	});
-}
-
 /* ── Main View ── */
 return view.extend({
 	load: function() {
@@ -648,42 +626,12 @@ return view.extend({
 	render: function(data) {
 		data = data || [];
 		injectCSS();
-		var st = data[0]||{}, ppe = data[1]||{}, ti = data[2]||{}, fe = data[3]||{};
-		var vo = data[4]||{enabled:0}, ppo = data[5]||{enabled:0}, flo = data[6]||{enabled:0};
-		var apo = data[7]||{enabled:0};
-		var dm = data[8]||{};
+		var st = data[0]||{}, ti = data[1]||{}, fe = data[2]||{};
+		var vo = data[3]||{enabled:0}, ppo = data[4]||{enabled:0}, flo = data[5]||{enabled:0};
+		var apo = data[6]||{enabled:0};
+		var dm = data[7]||{};
 		var bridgeBlocked = isBridgeOffloadBlocked(dm);
-		var entries = Array.isArray(ppe.entries) ? ppe.entries : [];
 		var memR = Array.isArray(st.memory_regions) ? st.memory_regions : [];
-		var ppeUpdatesPaused = false;
-		var latestPpeEntries = entries;
-		var ppeRequestSequence = 0;
-		var latestPpeRequest = 0;
-
-		function updatePpeTable(rows) {
-			var table = document.getElementById('ppe-entries-table');
-			if (!table) return;
-			while (table.rows.length > 1) table.deleteRow(1);
-			renderPpeRows(rows).forEach(function(row) { table.appendChild(row); });
-		}
-
-		var ppePauseButton = E('button', {
-			'type': 'button',
-			'class': 'cbi-button cbi-button-neutral npu-pause-button',
-			'title': _('Pause'),
-			'aria-pressed': 'false',
-			'click': function(ev) {
-				ppeUpdatesPaused = !ppeUpdatesPaused;
-				var label = ppeUpdatesPaused ? _('Resume') : _('Pause');
-				ev.currentTarget.textContent = label;
-				ev.currentTarget.title = label;
-				ev.currentTarget.setAttribute('aria-pressed', ppeUpdatesPaused ? 'true' : 'false');
-				ev.currentTarget.className = 'cbi-button ' +
-					(ppeUpdatesPaused ? 'cbi-button-action' : 'cbi-button-neutral') +
-					' npu-pause-button';
-				if (!ppeUpdatesPaused) updatePpeTable(latestPpeEntries);
-			}
-		}, _('Pause'));
 
 		var updatedEl = null;
 
@@ -765,20 +713,6 @@ return view.extend({
 				// Frame Engine diagram (includes WiFi bands, PPE flows, NPU indicator)
 				E('div',{'style':'margin-top:12px'},[ E('h4',{'class':'soc-text','style':'margin-bottom:8px'},_('Frame Engine'))]),
 				E('div',{'id':'fe-container','class':'npu-frame-wrap'}, renderFeDiagram(fe, ti, st))
-			]),
-
-			// PPE Flow Table
-			E('div',{'class':'cbi-section npu-section'},[
-				E('div',{'class':'npu-section-heading'},[
-					E('h3',{},_('PPE Flow Offload Entries')),
-					ppePauseButton
-				]),
-				E('table',{'class':'table npu-flow-table','id':'ppe-entries-table'},[
-					E('tr',{'class':'tr cbi-section-table-titles'},[
-						E('th',{'class':'th'},_('Index')), E('th',{'class':'th'},_('State')), E('th',{'class':'th'},_('Type')),
-						E('th',{'class':'th'},_('Original Flow')), E('th',{'class':'th'},_('New Flow')), E('th',{'class':'th'},_('Ethernet'))
-					])
-				].concat(renderPpeRows(entries)))
 			])
 		]);
 
@@ -789,10 +723,8 @@ return view.extend({
 		}
 
 		var fetchData = L.bind(function() {
-			var requestSequence = ++ppeRequestSequence;
 			return Promise.all([
 				_safeCall(callNpuStatus(), {}),
-				_safeCall(callPpeEntries(), {entries:[]}),
 				_safeCall(callTokenInfo(), {}),
 				_safeCall(callFrameEngine(), {}),
 				_safeCall(callGetVlanOffload(), {enabled:0}),
@@ -802,17 +734,11 @@ return view.extend({
 				_safeCall(callGetDeviceMode(), {bridge_offload_blocked:false})
 			]).then(L.bind(function(d) {
 				injectCSS();
-				var st=d[0]||{}, ppe=d[1]||{}, ti=d[2]||{}, fe=d[3]||{};
-				var vo=d[4]||{enabled:0}, ppo=d[5]||{enabled:0}, flo=d[6]||{enabled:0};
-				var apo=d[7]||{enabled:0};
-				var dm=d[8]||{};
+				var st=d[0]||{}, ti=d[1]||{}, fe=d[2]||{};
+				var vo=d[3]||{enabled:0}, ppo=d[4]||{enabled:0}, flo=d[5]||{enabled:0};
+				var apo=d[6]||{enabled:0};
+				var dm=d[7]||{};
 				var bridgeBlocked = isBridgeOffloadBlocked(dm);
-				var entries = Array.isArray(ppe.entries)?ppe.entries:[];
-				if (requestSequence > latestPpeRequest) {
-					latestPpeRequest = requestSequence;
-					latestPpeEntries = entries;
-					if (!ppeUpdatesPaused) updatePpeTable(latestPpeEntries);
-				}
 				updateNpuSummary(st);
 
 				// CPU info — always re-render (just text spans, no user interaction)

@@ -1,5 +1,5 @@
 {
-	"admin/status/airoha-manager": {
+	"admin/services/airoha-manager": {
 		"title": "Airoha Manager",
 		"order": 15,
 		"action": {
@@ -9,7 +9,7 @@
 			"acl": [ "luci-app-airoha-manager" ]
 		}
 	},
-	"admin/status/airoha-manager/npu": {
+	"admin/services/airoha-manager/npu": {
 		"title": "NPU Status",
 		"order": 1,
 		"action": {
@@ -17,7 +17,7 @@
 			"path": "airoha_manager/npu"
 		}
 	},
-	"admin/status/airoha-manager/flowsense": {
+	"admin/services/airoha-manager/flowsense": {
 		"title": "FlowSense",
 		"order": 2,
 		"action": {
@@ -25,7 +25,7 @@
 			"path": "airoha_manager/flowsense"
 		}
 	},
-	"admin/status/airoha-manager/fan": {
+	"admin/services/airoha-manager/fan": {
 		"title": "Fan Control",
 		"order": 3,
 		"action": {

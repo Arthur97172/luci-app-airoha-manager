@@ -17,8 +17,8 @@ msgstr ""
 msgid "%d clients"
 msgstr "%d 个客户端"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:226
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:609
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:219
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:602
 msgid "%d cores"
 msgstr "%d 核"
 
@@ -31,21 +31,21 @@ msgstr "%d 条记录"
 msgid "%d flows"
 msgstr "%d 条流"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:228
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:221
 msgid "%d memory regions"
 msgstr "%d 个内存区域"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:273
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:284
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:266
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:277
 msgid "%d sta"
 msgstr "%d 个客户端"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:416
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:409
 msgid "%d used / %d free"
 msgstr "%d 已用 / %d 空闲"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:457
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:472
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:450
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:465
 msgid "%s MHz (OC)"
 msgstr "%s MHz（超频）"
 
@@ -74,13 +74,13 @@ msgstr "5 GHz 射频"
 msgid "6 GHz Radio"
 msgstr "6 GHz 射频"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:367
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:360
 msgid "8x RISC-V via PCIe RAM"
 msgstr "8 个 RISC-V 核心（经 PCIe RAM）"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1243
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1315
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:365
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:358
 msgid "ACTIVE"
 msgstr "活动"
 
@@ -90,11 +90,11 @@ msgid "AP MODE"
 msgstr "AP 模式"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1420
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:759
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:707
 msgid "AP Mode Acceleration"
 msgstr "AP 模式加速"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:218
 msgid "Activated"
 msgstr "已激活"
 
@@ -133,7 +133,7 @@ msgstr "均衡 - 噪音与散热兼顾"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:220
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:990
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:257
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:250
 msgid "Band %d"
 msgstr "频段 %d"
 
@@ -145,11 +145,11 @@ msgstr "主板（风扇曲线）"
 msgid "Board Temperature"
 msgstr "主板温度"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:382
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:375
 msgid "Bound"
 msgstr "已绑定"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:227
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:220
 msgid "Bound / total PPE flows"
 msgstr "已绑定 / PPE 流总数"
 
@@ -165,11 +165,11 @@ msgstr "网桥丢包 Δ"
 msgid "CLEAN"
 msgstr "正常"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:711
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:659
 msgid "CPU Frequency"
 msgstr "CPU 频率"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:714
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:662
 msgid "CPU Info"
 msgstr "CPU 信息"
 
@@ -192,18 +192,18 @@ msgstr "严重"
 msgid "Click to change ping target"
 msgstr "点击更改 Ping 目标"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:552
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:593
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:545
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:586
 msgid "Click to disable"
 msgstr "点击禁用"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:552
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:593
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:545
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:586
 msgid "Click to enable"
 msgstr "点击启用"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:134
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:479
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:472
 msgid "Conservative"
 msgstr "保守模式"
 
@@ -212,7 +212,7 @@ msgstr "保守模式"
 msgid "Control Mode"
 msgstr "控制模式"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:724
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:672
 msgid "Control Settings"
 msgstr "控制设置"
 
@@ -220,11 +220,11 @@ msgstr "控制设置"
 msgid "Cooling priority"
 msgstr "散热优先"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:180
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:173
 msgid "Critical"
 msgstr "严重"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:718
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:666
 msgid "Current Frequency"
 msgstr "当前频率"
 
@@ -271,19 +271,19 @@ msgid "Define 5 temperature/PWM points. The curve preview updates live as you en
 msgstr "定义 5 个温度/PWM 点。输入数值时曲线预览会实时更新。"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1404
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:518
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:511
 msgid "Disabled"
 msgstr "已禁用"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:514
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:507
 msgid "Disabled in router mode"
 msgstr "路由模式下禁用"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:218
 msgid "Driver unavailable"
 msgstr "驱动不可用"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:354
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:347
 msgid "Drop"
 msgstr "丢包"
 
@@ -298,19 +298,18 @@ msgid "ERROR"
 msgstr "错误"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1404
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:517
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:510
 msgid "Enabled"
 msgstr "已启用"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1358
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:494
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:503
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:575
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:487
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:496
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:568
 msgid "Error:"
 msgstr "错误："
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:779
 msgid "Ethernet"
 msgstr "以太网"
 
@@ -327,7 +326,7 @@ msgid "Failed to set ping target"
 msgstr "设置 Ping 目标失败"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:203
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:199
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:192
 msgid "Fair"
 msgstr "一般"
 
@@ -361,7 +360,7 @@ msgstr "流程传感器"
 msgid "Following fan curve"
 msgstr "跟随风扇曲线"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:766
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:714
 msgid "Frame Engine"
 msgstr "帧引擎"
 
@@ -370,11 +369,11 @@ msgid "GOOD"
 msgstr "良好"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:203
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:199
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:192
 msgid "Good"
 msgstr "良好"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:616
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:609
 msgid "Governor"
 msgstr "调频策略"
 
@@ -406,15 +405,15 @@ msgstr "硬件缓冲"
 msgid "HW Flow Offload"
 msgstr "硬件流卸载"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:328
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:321
 msgid "HW Offload"
 msgstr "硬件卸载"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:752
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:700
 msgid "Hardware Flow Offloading"
 msgstr "硬件流卸载"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:180
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:173
 msgid "Healthy"
 msgstr "健康"
 
@@ -429,17 +428,16 @@ msgid "INTEGRITY"
 msgstr "完整性"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:201
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:197
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:190
 msgid "Idle"
 msgstr "空闲"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:567
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:560
 msgid "In router mode, use hardware flow offloading only"
 msgstr "路由模式下请仅使用硬件流卸载"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:276
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:778
 msgid "Index"
 msgstr "索引"
 
@@ -448,7 +446,7 @@ msgstr "索引"
 msgid "Integrity"
 msgstr "完整性"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:424
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:417
 msgid "Internal Switch (1G LAN3/4)"
 msgstr "内置交换机（1G LAN3/4）"
 
@@ -457,7 +455,7 @@ msgstr "内置交换机（1G LAN3/4）"
 msgid "Jitter"
 msgstr "抖动"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:426
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:419
 msgid "LAN2 (USXGMII 10G)"
 msgstr "LAN2（USXGMII 10G）"
 
@@ -491,7 +489,7 @@ msgstr "最大"
 msgid "MODE detecting..."
 msgstr "模式检测中..."
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:369
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:362
 msgid "Manages:"
 msgstr "管理："
 
@@ -508,7 +506,7 @@ msgstr "手动（固定转速）"
 msgid "Manual Fan Speed (PWM)"
 msgstr "手动风扇转速（PWM）"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:620
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:613
 msgid "Max Freq"
 msgstr "最高频率"
 
@@ -531,11 +529,11 @@ msgstr "无数据"
 msgid "NO LINK"
 msgstr "无连接"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:732
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:680
 msgid "NPU & Offload Engine"
 msgstr "NPU 与卸载引擎"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:226
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:219
 msgid "NPU Clock / Cores"
 msgstr "NPU 频率 / 核心"
 
@@ -554,17 +552,16 @@ msgstr "NPU 路径"
 msgid "NPU Path"
 msgstr "NPU 路径"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:218
 #: root/usr/share/luci/menu.d/luci-app-airoha-manager.json:13
 msgid "NPU Status"
 msgstr "NPU状态"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:218
 msgid "NPU device ready"
 msgstr "NPU 设备就绪"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:779
 msgid "New Flow"
 msgstr "新流"
 
@@ -573,7 +570,7 @@ msgid "No WAN IP detected"
 msgstr "未检测到 WAN IP"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:200
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:196
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:189
 msgid "No clients"
 msgstr "无客户端"
 
@@ -581,10 +578,6 @@ msgstr "无客户端"
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1337
 msgid "No connected clients"
 msgstr "无已连接客户端"
-
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:630
-msgid "No data"
-msgstr "无数据"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:296
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:336
@@ -595,11 +588,11 @@ msgstr "无记录"
 msgid "Noise and cooling balanced"
 msgstr "噪音与散热均衡"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:225
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:218
 msgid "Not Activated"
 msgstr "未激活"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:365
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:358
 msgid "OFF"
 msgstr "关闭"
 
@@ -611,7 +604,7 @@ msgstr "卸载 %"
 msgid "OK"
 msgstr "正常"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:227
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:220
 msgid "Offload Statistics"
 msgstr "卸载统计"
 
@@ -619,7 +612,7 @@ msgstr "卸载统计"
 msgid "On Demand"
 msgstr "按需模式"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:480
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:473
 msgid "On-demand"
 msgstr "按需模式"
 
@@ -632,7 +625,6 @@ msgid "Original"
 msgstr "原始"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:779
 msgid "Original Flow"
 msgstr "原始流"
 
@@ -641,7 +633,7 @@ msgstr "原始流"
 msgid "POOR"
 msgstr "差"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:377
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:370
 msgid "PPE Engines"
 msgstr "PPE 引擎"
 
@@ -653,11 +645,7 @@ msgstr "PPE 流监控"
 msgid "PPE Flow Monitor"
 msgstr "PPE 流监控"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:773
-msgid "PPE Flow Offload Entries"
-msgstr "PPE 流卸载表项"
-
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:370
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:363
 msgid "PPE init, WDMA rings, flow stats"
 msgstr "PPE 初始化、WDMA 环、流统计"
 
@@ -665,15 +653,15 @@ msgstr "PPE 初始化、WDMA 环、流统计"
 msgid "PPPoE Offload"
 msgstr "PPPoE 卸载"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:745
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:693
 msgid "PPPoE Passthrough Offload"
 msgstr "PPPoE 透传卸载"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:440
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:433
 msgid "PSE Port Queue Status"
 msgstr "PSE 端口队列状态"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:415
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:408
 msgid "PSE Shared Buffer"
 msgstr "PSE 共享缓冲"
 
@@ -688,16 +676,13 @@ msgstr "PWM 输出"
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1499
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1503
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1512
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:673
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:677
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:686
 msgid "Pause"
 msgstr "暂停"
 
 #: htdocs/luci-static/resources/view/airoha_manager/fan.js:123
 #: htdocs/luci-static/resources/view/airoha_manager/fan.js:470
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:136
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:481
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:474
 msgid "Performance"
 msgstr "性能"
 
@@ -727,7 +712,7 @@ msgid "Point %d Temperature (°C)"
 msgstr "第 %d 点温度（°C）"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:203
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:199
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:192
 msgid "Poor"
 msgstr "差"
 
@@ -735,7 +720,7 @@ msgstr "差"
 msgid "Power Save"
 msgstr "省电模式"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:482
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:475
 msgid "Powersave"
 msgstr "省电模式"
 
@@ -761,7 +746,7 @@ msgstr "重试"
 msgid "ROUTER MODE"
 msgstr "路由模式"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:312
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:305
 msgid "RX Drop"
 msgstr "RX 丢包"
 
@@ -774,39 +759,38 @@ msgstr "RX 错误"
 msgid "Real-time Trends"
 msgstr "实时趋势"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:551
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:592
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:544
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:585
 msgid "Recommended to turn off in router mode"
 msgstr "建议在路由模式下关闭"
 
 #: htdocs/luci-static/resources/view/airoha_manager/fan.js:526
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1480
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:695
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:643
 msgid "Refresh"
 msgstr "刷新"
 
 #: htdocs/luci-static/resources/view/airoha_manager/fan.js:530
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1484
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:699
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:647
 msgid "Refreshing…"
 msgstr "刷新中…"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:228
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:221
 msgid "Reserved Memory"
 msgstr "保留内存"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1503
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:677
 msgid "Resume"
 msgstr "恢复"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:551
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:592
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:544
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:585
 msgid "Router mode uses hardware flow offloading"
 msgstr "路由模式使用硬件流卸载"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:138
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:483
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:476
 msgid "Schedutil"
 msgstr "调度模式"
 
@@ -821,7 +805,6 @@ msgstr "信号"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:277
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:778
 msgid "State"
 msgstr "状态"
 
@@ -837,7 +820,7 @@ msgstr "系统"
 msgid "TX"
 msgstr "TX"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:310
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:303
 msgid "TX Drop"
 msgstr "TX 丢包"
 
@@ -854,7 +837,7 @@ msgstr "温度（°C）"
 msgid "Temperatures"
 msgstr "温度"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:386
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:379
 msgid "Total"
 msgstr "总计"
 
@@ -862,13 +845,12 @@ msgstr "总计"
 msgid "Translated"
 msgstr "转换后"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:512
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:505
 msgid "Turn off"
 msgstr "请关闭"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:278
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:450
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:778
 msgid "Type"
 msgstr "类型"
 
@@ -882,7 +864,7 @@ msgstr "未绑定"
 
 #: htdocs/luci-static/resources/view/airoha_manager/fan.js:523
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1477
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:692
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:640
 msgid "Updated %s"
 msgstr "更新于 %s"
 
@@ -891,7 +873,7 @@ msgid "Updated automatically every 5 seconds"
 msgstr "每 5 秒自动更新"
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:139
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:484
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:477
 msgid "Userspace"
 msgstr "用户空间"
 
@@ -899,11 +881,11 @@ msgstr "用户空间"
 msgid "VLAN Offload"
 msgstr "VLAN 卸载"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:738
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:686
 msgid "VLAN Tag Offload"
 msgstr "VLAN 标签卸载"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:425
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:418
 msgid "WAN (USXGMII 10G)"
 msgstr "WAN（USXGMII 10G）"
 
@@ -917,7 +899,7 @@ msgstr "警告"
 msgid "WEAK"
 msgstr "弱"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:180
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:173
 msgid "Warning"
 msgstr "警告"
 
@@ -925,7 +907,7 @@ msgstr "警告"
 msgid "WiFi"
 msgstr "WiFi"
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:291
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:284
 msgid "devmem not available on this build"
 msgstr "此构建不支持 devmem"
 

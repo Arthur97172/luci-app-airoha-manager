@@ -1299,10 +1299,13 @@ _bridge_offload_block_error() {
 # --- Flat PPE entry table ---------------------------------------------------
 #
 # From luci.airoha_npu, and a different shape from get_ppe_summary above: this
-# one returns one row per bound entry, which is what the NPU page's flow table
-# renders. get_ppe_summary returns the bound/unbound totals and per-band
-# breakdown the FlowSense overview needs. Both read the same debugfs files and
-# neither replaces the other.
+# one returns one row per bound entry, the flat list the NPU page used to render
+# as its PPE flow table. That table was removed from the NPU page in 1.0.0-r5,
+# because FlowSense's PPE flow monitor already lists the same entries, so no
+# view calls this method any more. It stays registered, and stays granted in the
+# ACL, so the ubus API keeps the shape this package published. get_ppe_summary
+# returns the bound/unbound totals and per-band breakdown the FlowSense overview
+# needs. Both read the same debugfs files and neither replaces the other.
 get_ppe_entries() {
 	local entries_file="/sys/kernel/debug/ppe/entries"
 

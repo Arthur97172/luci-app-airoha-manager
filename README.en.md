@@ -2,7 +2,7 @@
 
 # Airoha Manager
 
-`luci-app-airoha-manager` is a LuCI management application for Airoha AN7581 / W1700K class devices. It merges three previously separate applications — `luci-app-airoha-npu`, `luci-app-airoha-flowsense` and `luci-app-airoha-fancontrol` — into a single package behind a single menu entry, under **Status → Airoha Manager**.
+`luci-app-airoha-manager` is a LuCI management application for Airoha AN7581 / W1700K class devices. It merges three previously separate applications — `luci-app-airoha-npu`, `luci-app-airoha-flowsense` and `luci-app-airoha-fancontrol` — into a single package behind a single menu entry, under **Services → Airoha Manager**.
 
 The interface language follows LuCI: English when LuCI runs in English, Simplified Chinese when it runs in Simplified Chinese. The Chinese interface comes from the separate `luci-i18n-airoha-manager-zh-cn` translation package, which builds and installs on its own.
 
@@ -60,7 +60,7 @@ apk add --allow-untrusted luci-i18n-airoha-manager-zh-cn-*.apk
 
 The second package is the Simplified Chinese translation; install it only if you want a Chinese interface. The first one alone gives you English.
 
-The menu entry then appears under **Status → Airoha Manager**. The post-install script enables and starts the `fan` and `npu-jitter` services, reloads rpcd and clears the LuCI caches. If the menu does not show up straight away, refresh the page or log in again.
+The menu entry then appears under **Services → Airoha Manager**. The post-install script enables and starts the `fan` and `npu-jitter` services, reloads rpcd and clears the LuCI caches. If the menu does not show up straight away, refresh the page or log in again.
 
 ### Option 2: build from source
 
