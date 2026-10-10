@@ -101,10 +101,19 @@ for blk in conffiles postinst prerm; do
 done
 
 for key in 'LUCI_NAME:=luci-app-airoha-manager' 'PKG_VERSION:=1.0.0' 'PKG_LICENSE:=GPL-3.0-only' \
-           'PKG_LICENSE_FILES:=LICENSE' 'PKG_RELEASE:=1'; do
+           'PKG_LICENSE_FILES:=LICENSE'; do
 	if grep -qxF "$key" "$MAKEFILE"; then ok "Makefile declares $key"
 	else bad "Makefile declares $key"; fi
 done
+
+# PKG_RELEASE is incremented by every commit, so pinning a value here would
+# fail the suite on each one. Check the shape the convention calls for instead:
+# a single digit, since r10 rolls over into PKG_VERSION and resets this to 1.
+rel=$(sed -n 's/^PKG_RELEASE:=\(.*\)$/\1/p' "$MAKEFILE")
+case "$rel" in
+[1-9]) ok "Makefile declares PKG_RELEASE:=$rel (1-9; r10 rolls into PKG_VERSION)" ;;
+*)     bad "PKG_RELEASE is a single digit 1-9" "got '$rel'" ;;
+esac
 
 # --------------------------------------------------------------------------
 head_ "Backend: structure and syntax"
