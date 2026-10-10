@@ -291,7 +291,6 @@ function temperatureGroup(title, entries) {
 
 var settingsCSS = '\
 .fan-settings{--fan-blue:#00c8ff;--fan-green:#00cc44;--fan-amber:#f5a623;--fan-red:#d0021b;padding-bottom:20px}\
-.fan-settings .cbi-map-descr{position:relative;margin:0 0 16px;padding:15px 18px 15px 20px;border:1px solid var(--fan-border);border-left:4px solid var(--fan-blue);border-radius:10px;background:linear-gradient(135deg,var(--fan-card-bg),var(--fan-input-bg));box-shadow:0 5px 18px var(--fan-shadow);color:var(--fan-muted);font-size:12px;line-height:1.6}\
 .fan-settings .cbi-section{position:relative;background:var(--fan-card-bg);border:1px solid var(--fan-border);border-radius:12px;padding:18px;margin:14px 0!important;box-sizing:border-box;box-shadow:0 5px 18px var(--fan-shadow);overflow:hidden}\
 .fan-settings .cbi-section>h3{display:flex;align-items:center;gap:10px;font-size:16px;font-weight:700;letter-spacing:.2px;margin:0 0 14px;padding:0 0 12px;border-bottom:1px solid var(--fan-border);color:var(--fan-text)}\
 .fan-settings .cbi-section>h3:before{content:"";display:block;width:5px;height:20px;border-radius:99px;background:linear-gradient(180deg,var(--fan-blue),var(--fan-green));box-shadow:0 0 12px rgba(0,200,255,.25)}\
@@ -310,6 +309,8 @@ var settingsCSS = '\
 .fan-settings .fan-control-section [data-name="_curve_graph"]{display:block;padding:14px 0 0;margin-top:4px;border-top:1px solid var(--fan-border)}\
 .fan-settings .fan-control-section [data-name="_curve_graph"] .cbi-value-title{margin-bottom:8px}\
 .fan-settings .fan-control-section [data-name="_curve_graph"] .cbi-value-field{width:100%}\
+/* Every shipped theme right-aligns .cbi-value-title against its field; with the wide label column here that reads as centred, so pin the control-mode rows left. */\
+.fan-settings .fan-control-section .cbi-value-title,.fan-settings .fan-control-section .cbi-value-field{text-align:left}\
 .fan-curve-wrap{max-width:none;border:1px solid var(--fan-border);border-left:4px solid var(--fan-blue);border-radius:10px;padding:12px;background:linear-gradient(145deg,var(--fan-input-bg),var(--fan-card-bg));box-shadow:inset 0 0 0 1px rgba(0,200,255,.06)}\
 .fan-curve-canvas{display:block;width:100%;height:320px;background:var(--fan-canvas-bg);border:1px solid var(--fan-border);border-radius:7px;box-sizing:border-box}\
 .fan-settings .fan-curve-section{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}\
@@ -535,7 +536,6 @@ return view.extend({
 
 		var dashboard = E('div', { 'class': 'cbi-map fan-dashboard' }, [
 			E('div', { 'style': 'display:flex;align-items:center;gap:12px;margin:0 0 12px' }, [ refreshBtn, updatedEl ]),
-			E('div', { 'class': 'cbi-map-descr' }, _('View real-time fan speed and system temperatures.')),
 			renderSummary(status),
 			E('div', { 'class': 'fan-panel' }, [
 				E('div', { 'class': 'fan-panel-title' }, _('Real-time Trends')),
@@ -591,8 +591,7 @@ return view.extend({
 
 		var m, s, o;
 
-		m = new form.Map('fan', null,
-			_('Configure fan control mode and speed curves.'));
+		m = new form.Map('fan');
 
 		s = m.section(form.NamedSection, 'settings', 'fancontrol', _('Control Mode'));
 		s.anonymous = true;
@@ -653,8 +652,6 @@ return view.extend({
 
 		return m.render().then(function(mapNode) {
 			mapNode.classList.add('fan-settings');
-			var intro = mapNode.querySelector('.cbi-map-descr');
-			if (intro) intro.classList.add('fan-settings-intro');
 			var sections = mapNode.querySelectorAll('.cbi-section');
 			if (sections[0]) sections[0].classList.add('fan-control-section');
 			if (sections[1]) sections[1].classList.add('fan-curve-section');
