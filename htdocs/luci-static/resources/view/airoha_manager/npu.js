@@ -633,17 +633,7 @@ return view.extend({
 		var bridgeBlocked = isBridgeOffloadBlocked(dm);
 		var memR = Array.isArray(st.memory_regions) ? st.memory_regions : [];
 
-		var updatedEl = null;
-
-		function markUpdated() {
-			if (updatedEl)
-				updatedEl.textContent = _('Updated %s').format(new Date().toLocaleTimeString());
-		}
-
-		updatedEl = E('span', { 'class': 'soc-muted' }, '');
-
 		var view = E('div',{'class':'cbi-map npu-dashboard'},[
-			E('div',{'style':'display:flex;align-items:center;gap:12px;margin:0 0 12px'},[ updatedEl ]),
 
 			// CPU Frequency
 			E('div',{'class':'cbi-section npu-section'},[
@@ -763,8 +753,7 @@ return view.extend({
 
 				var fcEl=document.getElementById('fe-container'); if(fcEl){fcEl.innerHTML='';fcEl.appendChild(renderFeDiagram(fe, ti, st));}
 
-				markUpdated();
-			},this)).catch(function(err) {
+							},this)).catch(function(err) {
 				console.error('[airoha_manager] fetchData error:', err);
 			});
 		}, this);

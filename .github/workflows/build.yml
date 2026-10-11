@@ -31,7 +31,7 @@ jobs:
 
       - name: Download SDK
         run: |
-          curl -sL --retry 5 --retry-delay 10 "${{ matrix.sdk_url }}" -o sdk.tar.zst
+          curl -sL --retry 10 --retry-delay 15 "${{ matrix.sdk_url }}" -o sdk.tar.zst
 
       - name: Extract SDK
         run: |

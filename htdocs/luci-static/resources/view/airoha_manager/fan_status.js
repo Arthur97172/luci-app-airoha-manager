@@ -292,23 +292,11 @@ return view.extend({
 		injectStatusCSS();
 		restoreHistory();
 
-		/* A timestamp of the last poll, rewritten by markUpdated() every time
-		 * fetchData resolves. */
-		var updatedEl = null;
-
-		function markUpdated() {
-			if (updatedEl)
-				updatedEl.textContent = _('Updated %s').format(new Date().toLocaleTimeString());
-		}
-
-		updatedEl = E('span', { 'class': 'soc-muted' }, '');
-
 		/* The four summary cards sit inside the Real-time Trends panel, above the
 		 * three charts, so the readings they repeat (fan speed, PWM) and the two
 		 * that have no chart (control mode, curve preset) read as one block
 		 * rather than as a separate strip above the panel. */
 		var dashboard = E('div', { 'class': 'cbi-map fan-dashboard' }, [
-			E('div', { 'style': 'display:flex;align-items:center;gap:12px;margin:0 0 12px' }, [ updatedEl ]),
 			E('div', { 'class': 'fan-panel' }, [
 				E('div', { 'class': 'fan-panel-title' }, _('Real-time Trends')),
 				renderSummary(status),
@@ -352,7 +340,6 @@ return view.extend({
 				values.forEach(function(item) { var el = document.getElementById(item[0]); if (el) el.textContent = item[1]; });
 				appendHistory(current);
 				drawAllCharts();
-				markUpdated();
 			}, this));
 		}, this);
 
@@ -360,7 +347,7 @@ return view.extend({
 			drawAllCharts();
 			fetchData();
 		});
-		poll.add(fetchData, 3);
+		poll.add(fetchData, 5);
 
 		return dashboard;
 	},
