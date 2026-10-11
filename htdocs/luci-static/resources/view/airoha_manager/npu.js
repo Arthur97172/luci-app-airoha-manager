@@ -640,19 +640,10 @@ return view.extend({
 				updatedEl.textContent = _('Updated %s').format(new Date().toLocaleTimeString());
 		}
 
-		var refreshBtn = E('button', { 'type': 'button', 'class': 'cbi-button cbi-button-action' }, _('Refresh'));
-		refreshBtn.addEventListener('click', function() {
-			var self = refreshBtn, orig = self.textContent;
-			self.disabled = true;
-			self.textContent = _('Refreshing…');
-			var done = function() { self.disabled = false; self.textContent = orig; };
-			Promise.resolve(fetchData()).then(done, done);
-		});
-
 		updatedEl = E('span', { 'class': 'soc-muted' }, '');
 
 		var view = E('div',{'class':'cbi-map npu-dashboard'},[
-			E('div',{'style':'display:flex;align-items:center;gap:12px;margin:0 0 12px'},[ refreshBtn, updatedEl ]),
+			E('div',{'style':'display:flex;align-items:center;gap:12px;margin:0 0 12px'},[ updatedEl ]),
 
 			// CPU Frequency
 			E('div',{'class':'cbi-section npu-section'},[

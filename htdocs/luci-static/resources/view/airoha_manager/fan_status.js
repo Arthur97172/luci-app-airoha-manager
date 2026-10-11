@@ -292,25 +292,14 @@ return view.extend({
 		injectStatusCSS();
 		restoreHistory();
 
-		/* Same refresh affordance as the NPU and FlowSense tabs: a button that
-		 * re-runs the poll's fetch and a timestamp beside it. fetchData is
-		 * assigned further down, but the click handler only reads it when the
-		 * button is pressed, so the closure is already bound by then. */
+		/* A timestamp of the last poll, rewritten by markUpdated() every time
+		 * fetchData resolves. */
 		var updatedEl = null;
 
 		function markUpdated() {
 			if (updatedEl)
 				updatedEl.textContent = _('Updated %s').format(new Date().toLocaleTimeString());
 		}
-
-		var refreshBtn = E('button', { 'type': 'button', 'class': 'cbi-button cbi-button-action' }, _('Refresh'));
-		refreshBtn.addEventListener('click', function() {
-			var self = refreshBtn, orig = self.textContent;
-			self.disabled = true;
-			self.textContent = _('Refreshing…');
-			var done = function() { self.disabled = false; self.textContent = orig; };
-			Promise.resolve(fetchData()).then(done, done);
-		});
 
 		updatedEl = E('span', { 'class': 'soc-muted' }, '');
 
@@ -319,7 +308,7 @@ return view.extend({
 		 * that have no chart (control mode, curve preset) read as one block
 		 * rather than as a separate strip above the panel. */
 		var dashboard = E('div', { 'class': 'cbi-map fan-dashboard' }, [
-			E('div', { 'style': 'display:flex;align-items:center;gap:12px;margin:0 0 12px' }, [ refreshBtn, updatedEl ]),
+			E('div', { 'style': 'display:flex;align-items:center;gap:12px;margin:0 0 12px' }, [ updatedEl ]),
 			E('div', { 'class': 'fan-panel' }, [
 				E('div', { 'class': 'fan-panel-title' }, _('Real-time Trends')),
 				renderSummary(status),

@@ -56,19 +56,19 @@ msgstr ""
 msgid "+%d more"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:338
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:327
 msgid "10G PHY"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:342
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:331
 msgid "2.4 GHz Radio"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:343
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:332
 msgid "5 GHz Radio"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:344
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:333
 msgid "6 GHz Radio"
 msgstr ""
 
@@ -88,7 +88,7 @@ msgid "AP MODE"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1445
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:707
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:698
 msgid "AP Mode Acceleration"
 msgstr ""
 
@@ -135,11 +135,11 @@ msgstr ""
 msgid "Band %d"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:337
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:326
 msgid "Board (Fan Curve)"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:327
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:316
 msgid "Board Temperature"
 msgstr ""
 
@@ -163,11 +163,11 @@ msgstr ""
 msgid "CLEAN"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:659
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:650
 msgid "CPU Frequency"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:662
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:653
 msgid "CPU Info"
 msgstr ""
 
@@ -178,7 +178,7 @@ msgstr ""
 msgid "CPU PATH"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:336
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:325
 msgid "CPU Temp"
 msgstr ""
 
@@ -210,7 +210,7 @@ msgstr ""
 msgid "Control Mode"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:672
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:663
 msgid "Control Settings"
 msgstr ""
 
@@ -222,7 +222,7 @@ msgstr ""
 msgid "Critical"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:666
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:657
 msgid "Current Frequency"
 msgstr ""
 
@@ -337,12 +337,12 @@ msgstr ""
 msgid "Fan Curve Preset"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:328
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:317
 msgid "Fan PWM"
 msgstr ""
 
 #: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:124
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:329
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:318
 msgid "Fan Speed"
 msgstr ""
 
@@ -358,7 +358,7 @@ msgstr ""
 msgid "Following fan curve"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:714
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:705
 msgid "Frame Engine"
 msgstr ""
 
@@ -415,7 +415,7 @@ msgstr ""
 msgid "HW offload is enabled but ISP latency is high. Latency management may be skipped by hardware acceleration."
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:700
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:691
 msgid "Hardware Flow Offloading"
 msgstr ""
 
@@ -539,7 +539,7 @@ msgstr ""
 msgid "NO LINK"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:680
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:671
 msgid "NPU & Offload Engine"
 msgstr ""
 
@@ -671,7 +671,7 @@ msgstr ""
 msgid "PPPoE Offload"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:693
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:684
 msgid "PPPoE Passthrough Offload"
 msgstr ""
 
@@ -691,9 +691,9 @@ msgstr ""
 msgid "PWM output"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1524
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1515
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1519
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1528
-#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1537
 msgid "Pause"
 msgstr ""
 
@@ -777,7 +777,7 @@ msgstr ""
 msgid "RX errors"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:324
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:313
 msgid "Real-time Trends"
 msgstr ""
 
@@ -786,23 +786,11 @@ msgstr ""
 msgid "Recommended to turn off in router mode"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:306
-#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1505
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:643
-msgid "Refresh"
-msgstr ""
-
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:310
-#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1509
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:647
-msgid "Refreshing…"
-msgstr ""
-
 #: htdocs/luci-static/resources/view/airoha_manager/npu.js:221
 msgid "Reserved Memory"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1528
+#: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1519
 msgid "Resume"
 msgstr ""
 
@@ -838,11 +826,11 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:339
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:328
 msgid "Switch PHY"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:335
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:324
 msgid "System"
 msgstr ""
 
@@ -863,7 +851,7 @@ msgstr ""
 msgid "Temperature (°C)"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:333
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:322
 msgid "Temperatures"
 msgstr ""
 
@@ -892,7 +880,7 @@ msgstr ""
 msgid "UNBOUND"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:303
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:301
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:1502
 #: htdocs/luci-static/resources/view/airoha_manager/npu.js:640
 msgid "Updated %s"
@@ -911,7 +899,7 @@ msgstr ""
 msgid "VLAN Offload"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/npu.js:686
+#: htdocs/luci-static/resources/view/airoha_manager/npu.js:677
 msgid "VLAN Tag Offload"
 msgstr ""
 
@@ -933,7 +921,7 @@ msgstr ""
 msgid "Warning"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:341
+#: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:330
 msgid "WiFi"
 msgstr ""
 
