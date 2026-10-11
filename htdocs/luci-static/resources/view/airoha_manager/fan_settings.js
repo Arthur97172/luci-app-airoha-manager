@@ -26,10 +26,13 @@ var settingsCSS = '\
 .fan-settings .cbi-value-field input:focus,.fan-settings .cbi-value-field select:focus{border-color:var(--fan-blue);background:var(--fan-card-bg);box-shadow:0 0 0 3px rgba(0,200,255,.14);outline:0}\
 .fan-settings .cbi-value-field input[type=number]{font-family:monospace;font-weight:700}\
 .fan-settings .fan-control-section{background:linear-gradient(145deg,var(--fan-card-bg),var(--fan-input-bg))}\
+/* A control-mode row is a two-column grid: label in column one, control in column two. The Curve Preview row below is a full-width block, so the two selects began a third of the way across and read as centred under a chart that spans the whole row. Give the label and the field one full-width row each -- the shape the preview row already has -- and let row-gap supply the gap the grid used to. The row itself keeps display:grid: switching it to block from here would tie with the .hidden rule themes ship and, this sheet being appended to head last, win, leaving depends() rows visible. */\
+.fan-settings .fan-control-section .cbi-value>.cbi-value-title,.fan-settings .fan-control-section .cbi-value>.cbi-value-field{grid-column:1/-1}\
+.fan-settings .fan-control-section .cbi-value>.cbi-value-field{width:100%}\
+.fan-settings .fan-control-section .cbi-value{row-gap:8px}\
 .fan-settings .fan-control-section [data-name="_curve_graph"]{display:block;padding:14px 0 0;margin-top:4px;border-top:1px solid var(--fan-border)}\
 .fan-settings .fan-control-section [data-name="_curve_graph"] .cbi-value-title{margin-bottom:8px}\
-.fan-settings .fan-control-section [data-name="_curve_graph"] .cbi-value-field{width:100%}\
-/* Every shipped theme right-aligns .cbi-value-title against its field; with the wide label column here that reads as centred, so pin the control-mode rows left. */\
+/* Themes right-align the label against its field. With the label on a full-width row of its own that pushes the text to the far right, so pin both to the start of the line, level with the preview label. */\
 .fan-settings .fan-control-section .cbi-value-title,.fan-settings .fan-control-section .cbi-value-field{text-align:left}\
 .fan-curve-wrap{max-width:none;border:1px solid var(--fan-border);border-left:4px solid var(--fan-blue);border-radius:10px;padding:12px;background:linear-gradient(145deg,var(--fan-input-bg),var(--fan-card-bg));box-shadow:inset 0 0 0 1px rgba(0,200,255,.06)}\
 .fan-curve-canvas{display:block;width:100%;height:320px;background:var(--fan-canvas-bg);border:1px solid var(--fan-border);border-radius:7px;box-sizing:border-box}\

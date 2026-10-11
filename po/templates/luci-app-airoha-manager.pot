@@ -108,7 +108,7 @@ msgstr ""
 msgid "Automatic"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:236
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:239
 msgid "Automatic (Follow Curve)"
 msgstr ""
 
@@ -120,12 +120,12 @@ msgstr ""
 msgid "BOUND"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:190
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:193
 #: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:115
 msgid "Balanced"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:249
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:252
 msgid "Balanced - Good mix of noise and cooling"
 msgstr ""
 
@@ -205,7 +205,7 @@ msgstr ""
 msgid "Conservative"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:232
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:235
 #: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:126
 msgid "Control Mode"
 msgstr ""
@@ -226,7 +226,7 @@ msgstr ""
 msgid "Current Frequency"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:255
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:258
 msgid "Curve Preview"
 msgstr ""
 
@@ -234,16 +234,16 @@ msgstr ""
 msgid "Curve is paused"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:190
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:193
 #: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:115
 msgid "Custom"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:251
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:254
 msgid "Custom - Define your own curve"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:262
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:265
 msgid "Custom Curve Editor"
 msgstr ""
 
@@ -264,7 +264,7 @@ msgstr ""
 msgid "DROPPING"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:263
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:266
 msgid "Define 5 temperature/PWM points. The curve preview updates live as you enter values."
 msgstr ""
 
@@ -332,7 +332,7 @@ msgstr ""
 msgid "Fan Control"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:247
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:250
 #: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:127
 msgid "Fan Curve Preset"
 msgstr ""
@@ -508,11 +508,11 @@ msgstr ""
 msgid "Manual"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:237
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:240
 msgid "Manual (Fixed Speed)"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:240
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:243
 msgid "Manual Fan Speed (PWM)"
 msgstr ""
 
@@ -520,7 +520,7 @@ msgstr ""
 msgid "Max Freq"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:235
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:238
 msgid "Mode"
 msgstr ""
 
@@ -683,7 +683,7 @@ msgstr ""
 msgid "PSE Shared Buffer"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:128
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:131
 msgid "PWM (0-255)"
 msgstr ""
 
@@ -697,14 +697,14 @@ msgstr ""
 msgid "Pause"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:190
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:193
 #: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:115
 #: htdocs/luci-static/resources/view/airoha_manager/flowsense.js:136
 #: htdocs/luci-static/resources/view/airoha_manager/npu.js:474
 msgid "Performance"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:250
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:253
 msgid "Performance - Higher speeds, lower temps"
 msgstr ""
 
@@ -725,11 +725,11 @@ msgstr ""
 msgid "Ping target changed to:"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:283
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:286
 msgid "Point %d PWM (0-255)"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:277
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:280
 msgid "Point %d Temperature (°C)"
 msgstr ""
 
@@ -746,16 +746,16 @@ msgstr ""
 msgid "Powersave"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:197
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:200
 msgid "Preview"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:190
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:193
 #: htdocs/luci-static/resources/view/airoha_manager/fan_status.js:115
 msgid "Quiet"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:248
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:251
 msgid "Quiet - Lower speeds, higher temps"
 msgstr ""
 
@@ -804,7 +804,7 @@ msgstr ""
 msgid "Schedutil"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:241
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:244
 msgid "Set a fixed PWM value (0-255). 0 = Off, 255 = Full Speed"
 msgstr ""
 
@@ -847,7 +847,7 @@ msgstr ""
 msgid "TX errors"
 msgstr ""
 
-#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:124
+#: htdocs/luci-static/resources/view/airoha_manager/fan_settings.js:127
 msgid "Temperature (°C)"
 msgstr ""
 
