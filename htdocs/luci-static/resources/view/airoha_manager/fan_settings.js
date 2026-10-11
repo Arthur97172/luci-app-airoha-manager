@@ -35,7 +35,7 @@ var settingsCSS = '\
 /* Themes right-align the label against its field. With the label on a full-width row of its own that pushes the text to the far right, so pin both to the start of the line, level with the preview label. */\
 .fan-settings .fan-control-section .cbi-value-title,.fan-settings .fan-control-section .cbi-value-field{text-align:left}\
 .fan-curve-wrap{max-width:none;border:1px solid var(--fan-border);border-left:4px solid var(--fan-blue);border-radius:10px;padding:12px;background:linear-gradient(145deg,var(--fan-input-bg),var(--fan-card-bg));box-shadow:inset 0 0 0 1px rgba(0,200,255,.06)}\
-.fan-curve-canvas{display:block;width:100%;height:320px;background:var(--fan-canvas-bg);border:1px solid var(--fan-border);border-radius:7px;box-sizing:border-box}\
+.fan-curve-canvas{display:block;width:100%;height:362px;background:var(--fan-canvas-bg);border:1px solid var(--fan-border);border-radius:7px;box-sizing:border-box}\
 .fan-settings .fan-curve-section{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}\
 .fan-settings .fan-curve-section>h3,.fan-settings .fan-curve-section>.cbi-section-descr{grid-column:1/-1}\
 .fan-settings .fan-curve-section .cbi-value{display:flex!important;flex-direction:column!important;align-items:stretch;gap:8px;width:100%;box-sizing:border-box;padding:14px;border:1px solid var(--fan-border);border-left:3px solid var(--fan-amber);border-radius:9px;background:var(--fan-input-bg);box-shadow:0 2px 8px var(--fan-shadow)}\
@@ -45,7 +45,9 @@ var settingsCSS = '\
 .fan-settings .cbi-button{border-radius:7px;font-weight:600;transition:transform .18s,box-shadow .18s}\
 .fan-settings .cbi-button:hover{transform:translateY(-1px);box-shadow:0 4px 12px var(--fan-shadow)}\
 @media(max-width:760px){.fan-settings .fan-curve-section{grid-template-columns:1fr}.fan-settings .fan-curve-section>h3,.fan-settings .fan-curve-section>.cbi-section-descr{grid-column:auto}}\
-@media(max-width:640px){.fan-settings{padding-bottom:12px}.fan-settings .cbi-section{padding:13px;margin:11px 0!important}.fan-settings .cbi-value{display:block;padding:11px 0}.fan-settings .cbi-value-title{display:block;margin-bottom:7px}.fan-settings .cbi-value-field{margin-left:0!important}.fan-settings .fan-curve-section .cbi-value{padding:12px}.fan-curve-canvas{height:250px}}\
+@media(max-width:640px){.fan-settings{padding-bottom:12px}.fan-settings .cbi-section{padding:13px;margin:11px 0!important}.fan-settings .cbi-value{display:block;padding:11px 0}.fan-settings .cbi-value-title{display:block;margin-bottom:7px}.fan-settings .cbi-value-field{margin-left:0!important}.fan-settings .fan-curve-section .cbi-value{padding:12px}.fan-curve-canvas{height:280px}}\
+/* depends() hides an option by putting the hidden class on its .cbi-value row. The grid rule above and the flex rule further up outrank the .hidden rule several themes ship -- the flex rule even carries !important -- so a depends()-hidden row would stay on screen. Restate the rule here, last in the sheet and with the same weight as the flex rule, so the class alone decides what is visible. */\
+.fan-settings .cbi-value.hidden{display:none!important}\
 ';
 
 var _settingsDarkMode = null;
@@ -93,6 +95,16 @@ function drawCurveCanvas(canvasId, curves, activePreset, customPreview) {
 	var width = cssW;
 	var height = cssH;
 	var padding = 40;
+	/* The axis tops out at 300 rather than the 255 the hardware takes: the top
+	   of the scale is headroom, and six 50-unit bands put a round number on
+	   every gridline. The canvas heights in settingsCSS are sized to keep the
+	   pixels-per-unit the 255 scale had, so the curve does not shrink as the
+	   axis grows: 362px carries 280px of plot for 300 units where 320px
+	   carried 238px for 255, and 280px carries 198px where 250px carried 168px
+	   (the nearest whole pixel to that rate). Scale and heights move together:
+	   change one and the curve stops sitting on the gridlines. */
+	var pwmMax = 300;
+	var pwmStep = 50;
 	var background = canvasColor(canvas, '--fan-canvas-bg', '#fbfcfd');
 	var grid = canvasColor(canvas, '--fan-grid', 'rgba(80,90,100,.18)');
 	var axis = canvasColor(canvas, '--fan-axis', '#555');
@@ -108,8 +120,8 @@ function drawCurveCanvas(canvasId, curves, activePreset, customPreview) {
 		var x = padding + (t / 100) * (width - 2 * padding);
 		ctx.beginPath(); ctx.moveTo(x, padding); ctx.lineTo(x, height - padding); ctx.stroke();
 	}
-	for (var p = 0; p <= 255; p += 51) {
-		var y = height - padding - (p / 255) * (height - 2 * padding);
+	for (var p = 0; p <= pwmMax; p += pwmStep) {
+		var y = height - padding - (p / pwmMax) * (height - 2 * padding);
 		ctx.beginPath(); ctx.moveTo(padding, y); ctx.lineTo(width - padding, y); ctx.stroke();
 	}
 
@@ -128,7 +140,7 @@ function drawCurveCanvas(canvasId, curves, activePreset, customPreview) {
 	ctx.save();
 	ctx.translate(12, height / 2);
 	ctx.rotate(-Math.PI / 2);
-	ctx.fillText(_('PWM (0-255)'), 0, 0);
+	ctx.fillText(_('PWM (0-300)'), 0, 0);
 	ctx.restore();
 
 	ctx.fillStyle = muted;
@@ -138,8 +150,8 @@ function drawCurveCanvas(canvasId, curves, activePreset, customPreview) {
 		ctx.fillText(t, padding + (t / 100) * (width - 2 * padding), height - padding + 13);
 	}
 	ctx.textAlign = 'right';
-	for (var p = 0; p <= 255; p += 51) {
-		ctx.fillText(p, padding - 4, height - padding - (p / 255) * (height - 2 * padding) + 4);
+	for (var p = 0; p <= pwmMax; p += pwmStep) {
+		ctx.fillText(p, padding - 4, height - padding - (p / pwmMax) * (height - 2 * padding) + 4);
 	}
 
 	var colors = {
@@ -157,7 +169,7 @@ function drawCurveCanvas(canvasId, curves, activePreset, customPreview) {
 		ctx.beginPath();
 		points.forEach(function(pt, idx) {
 			var px = padding + (pt.temp / 100) * (width - 2 * padding);
-			var py = height - padding - (pt.pwm / 255) * (height - 2 * padding);
+			var py = height - padding - (pt.pwm / pwmMax) * (height - 2 * padding);
 			idx === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
 		});
 		ctx.stroke();
@@ -165,7 +177,7 @@ function drawCurveCanvas(canvasId, curves, activePreset, customPreview) {
 			ctx.fillStyle = color;
 			points.forEach(function(pt) {
 				var px = padding + (pt.temp / 100) * (width - 2 * padding);
-				var py = height - padding - (pt.pwm / 255) * (height - 2 * padding);
+				var py = height - padding - (pt.pwm / pwmMax) * (height - 2 * padding);
 				ctx.beginPath(); ctx.arc(px, py, 4, 0, 2 * Math.PI); ctx.fill();
 			});
 		}
@@ -215,6 +227,80 @@ function readCustomPoints() {
 	return points;
 }
 
+/* Everything that has to be redone whenever LuCI rebuilds the form markup:
+   the two section class names the stylesheet keys off, and -- inside the
+   curve section -- the editor toggle, the canvas and the listeners that
+   keep the two in step. Save and Reset both rebuild the map children in
+   place without running render() again, so this runs a second time, from
+   the handlers at the bottom of this file, against freshly built nodes. */
+function decorateSettings(mapNode, curves) {
+	mapNode.classList.add('fan-settings');
+	var sections = mapNode.querySelectorAll('.cbi-section');
+	if (sections[0]) sections[0].classList.add('fan-control-section');
+	if (sections[1]) sections[1].classList.add('fan-curve-section');
+	requestAnimationFrame(function() {
+		injectSettingsCSS();
+		var presetSelect = mapNode.querySelector('[data-name="curve_preset"] select');
+		var modeSelect = mapNode.querySelector('[data-name="mode"] select');
+		var point1Marker = mapNode.querySelector('[data-name="point1_temp"]');
+		var manualMarker = mapNode.querySelector('[data-name="manual_pwm"]');
+
+		function getCurrentPreset() {
+			return presetSelect ? presetSelect.value : uci.get('fan', 'settings', 'curve_preset') || 'balanced';
+		}
+
+		function getCurrentMode() {
+			return modeSelect ? modeSelect.value : uci.get('fan', 'settings', 'mode') || 'auto';
+		}
+
+		function toggleCustomSection() {
+			/* The editor follows the preset alone. Choosing Custom has to
+			   reveal it whichever mode is selected, so there is no mode
+			   test in this condition. */
+			var visible = getCurrentPreset() === 'custom';
+			var manual = getCurrentMode() === 'manual';
+			if (point1Marker) {
+				var section = point1Marker.closest('.cbi-section');
+				if (section) section.style.display = visible ? '' : 'none';
+			}
+			if (manualMarker) manualMarker.style.display = manual ? '' : 'none';
+		}
+
+		function redrawCanvas() {
+			var preset = getCurrentPreset();
+			if (preset === 'custom') {
+				drawCurveCanvas('curve-canvas', curves, preset, readCustomPoints());
+			} else {
+				drawCurveCanvas('curve-canvas', curves, preset, null);
+			}
+		}
+
+		redrawCanvas();
+		toggleCustomSection();
+
+		if (presetSelect) {
+			presetSelect.addEventListener('change', function() {
+				toggleCustomSection();
+				setTimeout(redrawCanvas, 50);
+			});
+		}
+
+		if (modeSelect) {
+			modeSelect.addEventListener('change', function() {
+				toggleCustomSection();
+				setTimeout(redrawCanvas, 50);
+			});
+		}
+
+		for (var i = 1; i <= 5; i++) {
+			['_temp', '_pwm'].forEach(function(suffix) {
+				var el = mapNode.querySelector('[data-name="point' + i + suffix + '"] input');
+				if (el) el.addEventListener('input', redrawCanvas);
+			});
+		}
+	});
+}
+
 return view.extend({
 	load: function() {
 		return Promise.all([
@@ -224,6 +310,7 @@ return view.extend({
 	},
 
 	render: function(data) {
+		var self = this;
 		var curves = data[1] || {};
 
 		injectSettingsCSS();
@@ -255,8 +342,10 @@ return view.extend({
 		o.default = 'balanced';
 		o.depends('mode', 'auto');
 
+		/* Deliberately no depends() on the chart: it has to stay on screen for
+		   both modes and for every preset, so it is the one row here that never
+		   hides. Giving it depends('mode','auto') hid it in manual mode. */
 		o = s.option(form.DummyValue, '_curve_graph', _('Curve Preview'));
-		o.depends('mode', 'auto');
 		o.rawhtml = true;
 		o.cfgvalue = function() {
 			return '<div class="fan-curve-wrap"><canvas id="curve-canvas" class="fan-curve-canvas"></canvas></div>';
@@ -290,69 +379,31 @@ return view.extend({
 		}
 
 		return m.render().then(function(mapNode) {
-			mapNode.classList.add('fan-settings');
-			var sections = mapNode.querySelectorAll('.cbi-section');
-			if (sections[0]) sections[0].classList.add('fan-control-section');
-			if (sections[1]) sections[1].classList.add('fan-curve-section');
-			requestAnimationFrame(function() {
-				injectSettingsCSS();
-				var presetSelect = mapNode.querySelector('[data-name="curve_preset"] select');
-				var modeSelect = mapNode.querySelector('[data-name="mode"] select');
-				var point1Marker = mapNode.querySelector('[data-name="point1_temp"]');
-				var manualMarker = mapNode.querySelector('[data-name="manual_pwm"]');
-
-				function getCurrentPreset() {
-					return presetSelect ? presetSelect.value : uci.get('fan', 'settings', 'curve_preset') || 'balanced';
-				}
-
-				function getCurrentMode() {
-					return modeSelect ? modeSelect.value : uci.get('fan', 'settings', 'mode') || 'auto';
-				}
-
-				function toggleCustomSection() {
-					var visible = getCurrentMode() === 'auto' && getCurrentPreset() === 'custom';
-					var manual = getCurrentMode() === 'manual';
-					if (point1Marker) {
-						var section = point1Marker.closest('.cbi-section');
-						if (section) section.style.display = visible ? '' : 'none';
-					}
-					if (manualMarker) manualMarker.style.display = manual ? '' : 'none';
-				}
-
-				function redrawCanvas() {
-					var preset = getCurrentPreset();
-					if (preset === 'custom') {
-						drawCurveCanvas('curve-canvas', curves, preset, readCustomPoints());
-					} else {
-						drawCurveCanvas('curve-canvas', curves, preset, null);
-					}
-				}
-
-				redrawCanvas();
-				toggleCustomSection();
-
-				if (presetSelect) {
-					presetSelect.addEventListener('change', function() {
-						toggleCustomSection();
-						setTimeout(redrawCanvas, 50);
-					});
-				}
-
-				if (modeSelect) {
-					modeSelect.addEventListener('change', function() {
-						toggleCustomSection();
-						setTimeout(redrawCanvas, 50);
-					});
-				}
-
-				for (var i = 1; i <= 5; i++) {
-					['_temp', '_pwm'].forEach(function(suffix) {
-						var el = mapNode.querySelector('[data-name="point' + i + suffix + '"] input');
-						if (el) el.addEventListener('input', redrawCanvas);
-					});
-				}
-			});
+			self.mapNode = mapNode;
+			self.curves = curves;
+			decorateSettings(mapNode, curves);
 			return mapNode;
+		});
+	},
+
+	/* view.handleSave() runs Map.save(), whose chain ends in renderContents(),
+	   and view.handleReset() runs Map.reset(), which is renderContents()
+	   itself. Both replace the map children, taking the class names, the
+	   canvas and every listener decorateSettings() installed with them --
+	   including the toggle that hides the editor, which is why the editor
+	   used to surface while Save & Apply re-rendered the form. Put the
+	   decoration back on the new nodes once the re-render has settled. */
+	handleSave: function(ev) {
+		var self = this;
+		return Promise.resolve(this.super('handleSave', [ ev ])).then(function() {
+			if (self.mapNode) decorateSettings(self.mapNode, self.curves);
+		});
+	},
+
+	handleReset: function(ev) {
+		var self = this;
+		return Promise.resolve(this.super('handleReset', [ ev ])).then(function() {
+			if (self.mapNode) decorateSettings(self.mapNode, self.curves);
 		});
 	}
 });
