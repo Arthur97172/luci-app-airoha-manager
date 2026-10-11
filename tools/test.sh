@@ -454,17 +454,34 @@ fi
 
 # --------------------------------------------------------------------------
 # Artifact: unpack the package the SDK actually produced and check what will
-# land on the device. Skipped when the package has not been built.
+# land on the device. Skipped when the package has not been built, and when
+# the one on disk is not the version this tree builds.
 head_ "Artifact: built package contents"
 
 APKBIN="$SDK/staging_dir/host/bin/apk"
-APK=$(ls "$SDK"/bin/packages/*/base/luci-app-airoha-manager-*.apk 2>/dev/null | head -1)
-I18N=$(ls "$SDK"/bin/packages/*/base/luci-i18n-airoha-manager-zh-cn-*.apk 2>/dev/null | head -1)
+I18N=$(ls -t "$SDK"/bin/packages/*/base/luci-i18n-airoha-manager-zh-cn-*.apk 2>/dev/null | head -1)
 
-if [ -z "$APK" ]; then
-	skip_ "no built package (build it first)"
-elif [ ! -x "$APKBIN" ]; then
+# bin/packages keeps every build it has produced -- an old r9 sitting next to
+# the r2 just built -- and "ls | head -1" takes whichever name sorts first,
+# which is the oldest version, so these checks used to unpack a package that
+# predates the source tree and report PASS for it. Take the newest build whose
+# own metadata carries the version this Makefile would produce, read out of
+# the package rather than off the filename, and skip when there is none.
+want="$(sed -n 's/^PKG_VERSION:=\(.*\)$/\1/p' "$MAKEFILE")-r$(sed -n 's/^PKG_RELEASE:=\(.*\)$/\1/p' "$MAKEFILE")"
+APK=""
+if [ -x "$APKBIN" ]; then
+	for f in $(ls -t "$SDK"/bin/packages/*/base/luci-app-airoha-manager-*.apk 2>/dev/null); do
+		if [ "$("$APKBIN" adbdump "$f" 2>/dev/null | sed -n 's/^  version: //p' | head -1)" = "$want" ]; then
+			APK="$f"
+			break
+		fi
+	done
+fi
+
+if [ ! -x "$APKBIN" ]; then
 	skip_ "no host apk tool at $APKBIN"
+elif [ -z "$APK" ]; then
+	skip_ "no $want package in bin/packages (rebuild it first)"
 else
 	ok "found $(basename "$APK")"
 	EXT="$WORK/extract"
