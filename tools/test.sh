@@ -62,7 +62,8 @@ for f in LICENSE Makefile \
          root/usr/share/rpcd/acl.d/luci-app-airoha-manager.json \
          htdocs/luci-static/resources/view/airoha_manager/npu.js \
          htdocs/luci-static/resources/view/airoha_manager/flowsense.js \
-         htdocs/luci-static/resources/view/airoha_manager/fan.js \
+         htdocs/luci-static/resources/view/airoha_manager/fan_status.js \
+         htdocs/luci-static/resources/view/airoha_manager/fan_settings.js \
          po/templates/luci-app-airoha-manager.pot \
          po/zh_Hans/luci-app-airoha-manager.po \
          tools/check-i18n.js; do
@@ -306,7 +307,7 @@ rm -f /tmp/luci-airoha-manager.*.json /tmp/luci-airoha-manager.*.json.lock
 # --------------------------------------------------------------------------
 head_ "Views: syntax and i18n hygiene"
 
-for f in npu flowsense fan; do
+for f in npu flowsense fan_status fan_settings; do
 	if node --check "$VIEWS/$f.js" 2>/dev/null; then ok "node --check $f.js"
 	else bad "node --check $f.js" "$(node --check "$VIEWS/$f.js" 2>&1 | head -3)"; fi
 
@@ -322,6 +323,12 @@ for f in npu flowsense fan; do
 	if [ "$decl" -ge 1 ]; then ok "$f.js talks to luci.airoha_manager ($decl refs)"
 	else bad "$f.js talks to luci.airoha_manager"; fi
 done
+
+# Splitting the Fan Control view must leave no orphan behind: the directory
+# holds exactly the four views the menu names.
+chk "view directory holds exactly 4 views" \
+	"fan_settings.js fan_status.js flowsense.js npu.js" \
+	"$(ls "$VIEWS" | sort | tr '\n' ' ' | sed 's/ $//')"
 
 # --------------------------------------------------------------------------
 head_ "Menu and ACL descriptors"
@@ -341,13 +348,30 @@ for p in $(jq_ '" ".join(v["action"]["path"] for v in d.values() if v.get("actio
 	else bad "menu view $p exists"; fi
 done
 
-chk "menu declares 3 views" "3" "$(jq_ 'sum(1 for v in d.values() if v.get("action",{}).get("type")=="view")' < "$MENU")"
+# Four view nodes: the two leaf tabs, and the two halves of Fan Control. The
+# Fan Control node itself is a firstchild, so it carries no view.
+chk "menu declares 4 views" "4" "$(jq_ 'sum(1 for v in d.values() if v.get("action",{}).get("type")=="view")' < "$MENU")"
 
-# The three titles are the ones the spec fixes, in the order the menu shows
-# them (the "order" field, not the node name).
+# The three top-level tabs and the two Fan Control sub-tabs are counted
+# separately: the direct children of the menu root, then the children one level
+# below it. Fan Control itself is a firstchild node, so it carries no view.
+chk "fan node is a firstchild" "firstchild" \
+	"$(jq_ 'd["admin/services/airoha-manager/fan"]["action"]["type"]' < "$MENU")"
+
+# The three top-level titles are the ones the spec fixes, in the order the menu
+# shows them (the "order" field, not the node name).
 chk "menu tab order and titles" \
 	"NPU Status|FlowSense|Fan Control" \
-	"$(jq_ '"|".join(v["title"] for v in sorted((v for v in d.values() if v.get("action",{}).get("type")=="view"), key=lambda v: v["order"]))' < "$MENU")"
+	"$(jq_ '"|".join(d[k]["title"] for k in sorted([k for k in d if k.startswith("admin/services/airoha-manager/") and k.count("/") == 3], key=lambda k: d[k]["order"]))' < "$MENU")"
+
+chk "fan sub-tab order and titles" \
+	"Status|Settings" \
+	"$(jq_ '"|".join(d[k]["title"] for k in sorted([k for k in d if k.startswith("admin/services/airoha-manager/fan/") and k.count("/") == 4], key=lambda k: d[k]["order"]))' < "$MENU")"
+
+# The two sub-tabs must resolve to the two halves of the old single view.
+chk "fan sub-tab view paths" \
+	"airoha_manager/fan_status|airoha_manager/fan_settings" \
+	"$(jq_ '"|".join(d[k]["action"]["path"] for k in sorted([k for k in d if k.startswith("admin/services/airoha-manager/fan/")], key=lambda k: d[k]["order"]))' < "$MENU")"
 
 # Every method the ACL grants must be one the backend declares. A grant for a
 # method that does not exist is a silently dead permission; a method with no
@@ -386,9 +410,17 @@ chk ".pot entry count matches .po" "$npot" "$npo"
 empty=$(grep -c '^msgstr ""$' "$PO"); empty=$((empty-1))  # minus the header
 chk "every .po entry is translated" "0" "$empty"
 
-# The four titles the spec fixes by name.
+# The titles the spec fixes by name, plus the two Fan Control sub-tabs and the
+# conflict-alert strings. The alerts matter because the rpcd backend composes
+# them in English, so the scanner only ever sees them through the literals the
+# FlowSense view now carries; pin the reported one end to end.
 for pair in 'Airoha Manager|Airoha管理中心' 'NPU Status|NPU状态' \
-            'FlowSense|流程传感器' 'Fan Control|风扇控制'; do
+            'FlowSense|流程传感器' 'Fan Control|风扇控制' \
+            'Status|状态' 'Settings|设置' \
+            'Ghost Shaper Active|CAKE 整形器被绕过' \
+            'Physical Bottleneck|物理层瓶颈' \
+            'NPU Bypass Detected|检测到 NPU 旁路' \
+            'HW offload is enabled but ISP latency is high. Latency management may be skipped by hardware acceleration.|已启用硬件卸载，但 ISP 延迟偏高。硬件加速可能会跳过延迟管理。'; do
 	id=${pair%%|*}; want=${pair##*|}
 	got=$(python3 - "$PO" "$id" <<'PY'
 import re, sys
@@ -446,7 +478,8 @@ else
 	for f in etc/config/fan etc/config/npu-monitor \
 	         www/luci-static/resources/view/airoha_manager/npu.js \
 	         www/luci-static/resources/view/airoha_manager/flowsense.js \
-	         www/luci-static/resources/view/airoha_manager/fan.js; do
+	         www/luci-static/resources/view/airoha_manager/fan_status.js \
+	         www/luci-static/resources/view/airoha_manager/fan_settings.js; do
 		chk "packaged $f is 644" "644" "$(stat -c '%a' "$EXT/$f" 2>/dev/null)"
 	done
 

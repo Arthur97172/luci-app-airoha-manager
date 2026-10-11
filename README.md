@@ -33,12 +33,20 @@
 
 ### 三、风扇控制
 
-- **实时温度**：CPU、主板
-- **风扇转速与 PWM 输出**
+分为 **状态** 与 **设置** 两个子标签页。
+
+**状态**
+
+- **实时趋势**：风扇转速、PWM、控制模式、风扇曲线预设四项概览，以及主板温度 / 风扇 PWM / 风扇转速三条实时曲线
+- **温度**：CPU、主板、10G PHY、交换机 PHY，以及 2.4 / 5 / 6 GHz 射频温度
+
+**设置**
+
 - **控制模式**：自动（跟随曲线）/ 手动（固定转速）
 - **曲线预设**：静音 / 均衡 / 性能 / 自定义
 - **自定义曲线编辑器**：定义 5 个温度/PWM 点，曲线预览随输入实时更新
-- 需要设备具备 NCT7802 硬件监控芯片，否则该页会显示"驱动不可用"
+
+需要设备具备 NCT7802 硬件监控芯片，否则该页会显示"驱动不可用"
 
 ## 环境要求
 
@@ -78,7 +86,7 @@ bash tools/build.sh /path/to/openwrt-sdk-airoha-an7581_gcc-14.4.0_musl.Linux-x86
 
 ```
 Makefile                                          包定义
-htdocs/luci-static/resources/view/airoha_manager/ 三个页面 npu.js / flowsense.js / fan.js
+htdocs/luci-static/resources/view/airoha_manager/ 四个页面 npu.js / flowsense.js / fan_status.js / fan_settings.js
 po/templates/                                     .pot 模板
 po/zh_Hans/                                       简体中文翻译
 root/etc/init.d/fan                               风扇服务
@@ -105,7 +113,7 @@ tools/check-i18n.js                               翻译一致性检查
 bash tools/test.sh
 ```
 
-覆盖包布局与文件权限、Makefile 的 include 时序、后端 helper 行为与全部 34 个方法、三个前端页面、菜单与 ACL 定义、翻译目录一致性，并对实际构建出的 `.apk` 做解包校验。
+覆盖包布局与文件权限、Makefile 的 include 时序、后端 helper 行为与全部 34 个方法、四个前端页面、菜单与 ACL 定义、翻译目录一致性，并对实际构建出的 `.apk` 做解包校验。
 
 ## 许可证
 

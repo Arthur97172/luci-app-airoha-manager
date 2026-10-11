@@ -33,12 +33,20 @@ All three tabs share one rpcd backend, `luci.airoha_manager` (34 methods), so th
 
 ### 3. Fan Control
 
-- **Live temperatures**: CPU and board
-- **Fan speed and PWM output**
+Split into two sub-tabs, **Status** and **Settings**.
+
+**Status**
+
+- **Real-time trends**: fan speed, PWM, control mode and curve preset as a four-card overview, above the board temperature / fan PWM / fan speed charts
+- **Temperatures**: CPU, board, 10G PHY and switch PHY, plus the 2.4 / 5 / 6 GHz radios
+
+**Settings**
+
 - **Control mode**: automatic (follow the curve) or manual (fixed speed)
 - **Curve presets**: Quiet / Balanced / Performance / Custom
 - **Custom curve editor**: five temperature/PWM points, with the curve preview updating as you type
-- Requires an NCT7802 hardware monitoring chip; without one the page reports the driver as unavailable
+
+Requires an NCT7802 hardware monitoring chip; without one the page reports the driver as unavailable
 
 ## Requirements
 
@@ -78,7 +86,7 @@ The script links this repository into the SDK's `package/` directory, enables `C
 
 ```
 Makefile                                          package definition
-htdocs/luci-static/resources/view/airoha_manager/ the three views: npu.js / flowsense.js / fan.js
+htdocs/luci-static/resources/view/airoha_manager/ the four views: npu.js / flowsense.js / fan_status.js / fan_settings.js
 po/templates/                                     .pot template
 po/zh_Hans/                                       Simplified Chinese translation
 root/etc/init.d/fan                               fan service
@@ -105,7 +113,7 @@ Each commit increments `PKG_RELEASE` (`1.0.0-r1` through `r9`). At `r10` the las
 bash tools/test.sh
 ```
 
-The suite covers the package layout and file modes, the Makefile's include ordering, the backend helpers and all 34 methods, the three views, the menu and ACL definitions and translation consistency — and it unpacks the `.apk` files that were actually built to check their contents.
+The suite covers the package layout and file modes, the Makefile's include ordering, the backend helpers and all 34 methods, the four views, the menu and ACL definitions and translation consistency — and it unpacks the `.apk` files that were actually built to check their contents.
 
 ## License
 

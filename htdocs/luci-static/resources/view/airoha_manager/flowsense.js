@@ -558,23 +558,47 @@ function latencyColor(ms) {
 }
 
 /* ── Conflict Alerts ── */
-function translateAlertMsg(msg) {
-	var t = _(msg);
-	if (t !== msg) return t;
-	var m = msg.match(/^([^(]+)\s*\(([^)]+)\)\s*(.*)$/);
-	if (m) {
-		var template = m[1].trim() + '. ' + m[3].trim();
-		template = template.replace(/\.\s*\./g, '.');
-		var tt = _(template);
-		if (tt !== template) {
-			var firstPeriod = tt.indexOf('。');
-			if (firstPeriod === -1) firstPeriod = tt.indexOf('.');
-			if (firstPeriod !== -1) {
-				return tt.substring(0, firstPeriod) + ' (' + m[2] + ')' + tt.substring(firstPeriod);
-			}
-		}
+/* The rpcd backend composes these alerts in English and interpolates the
+ * measurement into the message, so neither the titles nor the sentences are
+ * visible to LuCI's translation scanner, which reads literals passed to the
+ * translation keyword and nothing else. The templates are therefore declared
+ * here as literals and selected by the alert's stable id, which the backend
+ * emits too; each message is the sentence without its measurement, since that
+ * is the part that is the same on every router. withMeasurement() then puts
+ * the backend's measurement back where the English original had it. An id this
+ * table does not know is shown exactly as the backend sent it. */
+var CONFLICT_ALERTS = {
+	ghost_shaper: {
+		title: _('Ghost Shaper Active'),
+		message: _('NPU HW offload is bypassing CAKE SQM. Offloaded flows skip bufferbloat management — latency protection is inactive under load.')
+	},
+	physical_bottleneck: {
+		title: _('Physical Bottleneck'),
+		message: _('Hardware errors detected on WAN. Check WAN cable or SFP. Latency stats may be misleading.')
+	},
+	npu_bypass_latency: {
+		title: _('NPU Bypass Detected'),
+		message: _('HW offload is enabled but ISP latency is high. Latency management may be skipped by hardware acceleration.')
 	}
-	return msg;
+};
+
+/* "…latency is high (157.99ms). Latency…" -> the measurement is re-inserted in
+ * front of the first sentence break, where the English original had it. */
+function withMeasurement(text, source) {
+	var m = (source || '').match(/\(([^)]+)\)/);
+	if (!m) return text;
+	var cut = text.indexOf('。');
+	if (cut === -1) cut = text.indexOf('.');
+	if (cut === -1) return text;
+	return text.substring(0, cut) + ' (' + m[1] + ')' + text.substring(cut);
+}
+
+function alertText(alert) {
+	var known = CONFLICT_ALERTS[alert.id];
+	return {
+		title: known ? known.title : _(alert.title || ''),
+		message: known ? withMeasurement(known.message, alert.message) : _(alert.message || '')
+	};
 }
 
 function renderConflictAlerts(alertData) {
@@ -582,11 +606,12 @@ function renderConflictAlerts(alertData) {
 	if (!alerts.length) return E('div', { 'id': 'conflict-alerts' });
 	var items = alerts.map(function(a) {
 		var isErr = a.severity === 'error';
+		var text = alertText(a);
 		return E('div', { 'class': 'alert-item ' + (isErr ? 'alert-error' : 'alert-warning') }, [
 			E('span', { 'class': 'alert-icon' }, isErr ? '\u26A0' : '\u26A1'),
 			E('div', {}, [
-				E('div', { 'class': 'alert-title' }, _(a.title || '')),
-				E('div', { 'class': 'alert-msg' }, translateAlertMsg(a.message || ''))
+				E('div', { 'class': 'alert-title' }, text.title),
+				E('div', { 'class': 'alert-msg' }, text.message)
 			])
 		]);
 	});

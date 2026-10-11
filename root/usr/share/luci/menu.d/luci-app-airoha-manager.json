@@ -29,11 +29,26 @@
 		"title": "Fan Control",
 		"order": 3,
 		"action": {
-			"type": "view",
-			"path": "airoha_manager/fan"
+			"type": "firstchild"
 		},
 		"depends": {
 			"uci": { "fan": true }
+		}
+	},
+	"admin/services/airoha-manager/fan/status": {
+		"title": "Status",
+		"order": 1,
+		"action": {
+			"type": "view",
+			"path": "airoha_manager/fan_status"
+		}
+	},
+	"admin/services/airoha-manager/fan/settings": {
+		"title": "Settings",
+		"order": 2,
+		"action": {
+			"type": "view",
+			"path": "airoha_manager/fan_settings"
 		}
 	}
 }
