@@ -193,24 +193,65 @@ function drawCurveCanvas(canvasId, curves, activePreset, customPreview) {
 		drawLine(customPreview, '#ff6600', 1, 2.5, true);
 	}
 
+	/* The legend is one row of colour chips across the top of the plot, above
+	   the gridlines: one entry per preset, plus the preview entry while a
+	   custom curve is being edited. The labels are translated and the canvas is
+	   as wide as the panel, so their widths are measured and the row is laid
+	   out from the middle of the plot area, closing the gaps and then shrinking
+	   the font when the panel is too narrow to hold it at the usual size. */
+	var legend = Object.keys(colors).map(function(preset) {
+		return {
+			color: colors[preset],
+			label: { quiet: _('Quiet'), balanced: _('Balanced'), performance: _('Performance'), custom: _('Custom') }[preset] || preset,
+			dim: preset !== activePreset
+		};
+	});
+	if (customPreview)
+		legend.push({ color: '#ff6600', label: _('Preview'), dim: false });
+
+	var chip = 12, chipGap = 4;
+	var rowGap = 18, rowFont = 10;
 	var legendY = 15;
-	Object.keys(colors).forEach(function(preset) {
-		ctx.fillStyle = colors[preset];
-		ctx.globalAlpha = preset === activePreset ? 1 : 0.5;
-		ctx.fillRect(width - 100, legendY, 12, 12);
+	var avail = width - 2 * padding;
+
+	/* Measured with an identity transform, so the widths come back in the same
+	   units as the coordinates below instead of scaled by devicePixelRatio. */
+	function measureRow(gap, size) {
+		var widths = legend.map(function(item) {
+			ctx.save();
+			ctx.setTransform(1, 0, 0, 1, 0, 0);
+			ctx.font = size + 'px sans-serif';
+			var w = ctx.measureText(item.label).width;
+			ctx.restore();
+			return w;
+		});
+		var total = 0;
+		widths.forEach(function(w, idx) { total += (idx ? gap : 0) + chip + chipGap + w; });
+		return { widths: widths, total: total };
+	}
+
+	var row = measureRow(rowGap, rowFont);
+	while (rowGap > 4 && row.total > avail) {
+		rowGap -= 2;
+		row = measureRow(rowGap, rowFont);
+	}
+	while (rowFont > 8 && row.total > avail) {
+		rowFont -= 1;
+		row = measureRow(rowGap, rowFont);
+	}
+
+	ctx.font = rowFont + 'px sans-serif';
+	ctx.textAlign = 'left';
+	var legendX = padding + Math.max(0, (avail - row.total) / 2);
+	legend.forEach(function(item, idx) {
+		ctx.globalAlpha = item.dim ? 0.5 : 1;
+		ctx.fillStyle = item.color;
+		ctx.fillRect(legendX, legendY, chip, chip);
 		ctx.globalAlpha = 1;
 		ctx.fillStyle = text;
-		ctx.font = '10px sans-serif';
-		ctx.textAlign = 'left';
-		ctx.fillText({ quiet: _('Quiet'), balanced: _('Balanced'), performance: _('Performance'), custom: _('Custom') }[preset] || preset, width - 84, legendY + 10);
-		legendY += 17;
+		ctx.fillText(item.label, legendX + chip + chipGap, legendY + (chip + rowFont) / 2 - 1);
+		legendX += chip + chipGap + row.widths[idx] + rowGap;
 	});
-	if (customPreview) {
-		ctx.fillStyle = '#ff6600';
-		ctx.fillRect(width - 100, legendY, 12, 12);
-		ctx.fillStyle = text;
-		ctx.fillText(_('Preview'), width - 84, legendY + 10);
-	}
 }
 
 function readCustomPoints() {
