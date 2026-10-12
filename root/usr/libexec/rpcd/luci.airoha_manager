@@ -29,6 +29,58 @@ _devmem_read() {
 	devmem "$1" 32 2>/dev/null
 }
 
+# Read one chip SCU register by absolute address. The debugfs regmap dump is the
+# source that works on a stock build: the kernel ships with CONFIG_DEVMEM off
+# and busybox without the devmem applet, so /dev/mem does not exist at all.
+# base-files mounts debugfs unconditionally in /etc/init.d/boot, and the regmap
+# itself is created at boot by the built-in thermal driver, which looks up
+# airoha,chip-scu — so the dump is always there, on an ImageBuilder firmware and
+# on a source build alike. Falls back to devmem for a build that does provide
+# it. Prints nothing when neither source is available.
+_scu_read() {
+	local addr="$1" offset value="" f
+
+	offset=$(printf '%x' "$(( addr - 0x1fa20000 ))" 2>/dev/null)
+	if [ -n "$offset" ]; then
+		# The dump holds one register per line, "<byte offset>: <value>",
+		# with the offsets relative to the regmap base (the SCU window).
+		for f in /sys/kernel/debug/regmap/*1fa20000*/registers; do
+			[ -r "$f" ] || continue
+			value=$(grep -m1 "^0*$offset: " "$f" 2>/dev/null | cut -d' ' -f2)
+			[ -n "$value" ] && break
+		done
+	fi
+	[ -n "$value" ] && { printf '%s' "$value"; return 0; }
+
+	_devmem_read "$addr"
+}
+
+# Decode the ARM PLL from CR_CPUPLL_SDM_PCW / CR_CPUPLL_SDM_PCW_CHG exactly the
+# way the vendor BL31 does (atf-airoha, plat/ecnt/en7523/ecnt_cpufreq.c:
+# curr_armpll_clk_get): POSDIV 0 scales the PCW by 50 MHz, POSDIV 1 by 25 MHz,
+# any other POSDIV is invalid, and the result has to be one of the 500..1200 MHz
+# entries the firmware's own table allows. Prints the frequency in MHz, or
+# nothing when the two registers do not decode to a valid one.
+_pll_mhz() {
+	local pcw_raw="${1#0x}" chg_raw="${2#0x}" pcw posdiv mhz
+
+	# "XXXX" is what the debugfs dump prints for a register it could not read
+	case "$pcw_raw" in ''|*[!0-9a-fA-F]*) return 1 ;; esac
+	case "$chg_raw" in ''|*[!0-9a-fA-F]*) return 1 ;; esac
+
+	pcw=$(( (0x$pcw_raw >> 24) & 0xFF ))
+	posdiv=$(( (0x$chg_raw >> 4) & 0x7 ))
+
+	case "$posdiv" in
+		0) mhz=$(( pcw * 50 )) ;;
+		1) mhz=$(( pcw * 25 )) ;;
+		*) return 1 ;;
+	esac
+
+	[ "$mhz" -ge 500 ] && [ "$mhz" -le 1200 ] && [ $(( mhz % 50 )) -eq 0 ] || return 1
+	printf '%s' "$mhz"
+}
+
 # Run an external command under a wall-clock deadline. A read of a wedged PPE
 # block does not return, and rpcd would hang with it. The tag argument is
 # accepted for call-site symmetry and is not used.
@@ -271,23 +323,15 @@ get_status() {
 		cpu_avail_freqs=$(cat "$cpufreq_path/scaling_available_frequencies" 2>/dev/null || echo "")
 	fi
 
-	# Read actual PLL frequency from hardware (detects overclock)
+	# Read the ARM PLL from hardware. Two jobs: it detects an overclock when
+	# cpufreq's ceiling sits below what the PLL is actually programmed to, and
+	# on firmware whose BL31 does not answer the AVS frequency call it is the
+	# only reading of the current CPU frequency at all — and the true one,
+	# because it is the same register the firmware itself would report.
 	local pll_freq=0
-	if command -v devmem > /dev/null 2>&1; then
-		local pcw_raw=$(_devmem_read 0x1fa202b4 2>/dev/null)
-		local chg_raw=$(_devmem_read 0x1fa202b8 2>/dev/null)
-		if [ -n "$pcw_raw" ] && [ -n "$chg_raw" ]; then
-			pcw_raw=$((pcw_raw))
-			chg_raw=$((chg_raw))
-			local pcw_int=$(( (pcw_raw >> 24) & 0x7F ))
-			local pll_posdiv=$(( (chg_raw >> 4) & 7 ))
-			if [ "$pll_posdiv" -eq 0 ]; then
-				pll_freq=$((pcw_int * 50))
-			else
-				pll_freq=$((pcw_int * 50 / (1 << pll_posdiv)))
-			fi
-		fi
-	fi
+	local pll_read
+	pll_read=$(_pll_mhz "$(_scu_read 0x1fa202b4)" "$(_scu_read 0x1fa202b8)" 2>/dev/null)
+	[ -n "$pll_read" ] && pll_freq=$pll_read
 
 	# Count online CPUs
 	local cpu_count=0
@@ -1368,55 +1412,14 @@ get_ppe_entries() {
 
 # --- CPU governor / frequency control ---------------------------------------
 #
-# From luci.airoha_npu. Both validate their argument against the cpufreq sysfs
-# lists before writing, so a stale page cannot push an unsupported value.
-set_governor() {
-	local governor
-	governor=$(echo "$1" | jsonfilter -e "@.governor" 2>/dev/null)
-
-	if [ -z "$governor" ]; then
-		echo '{"error":"missing governor parameter"}'
-		return
-	fi
-
-	# Validate governor is available
-	local avail=$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_governors 2>/dev/null)
-	if ! echo "$avail" | grep -qw "$governor"; then
-		printf '{"error":"invalid governor: %s"}' "$governor"
-		return
-	fi
-
-	echo "$governor" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor 2>/dev/null
-	if [ $? -eq 0 ]; then
-		printf '{"result":"ok","governor":"%s"}' "$governor"
-	else
-		echo '{"error":"failed to set governor"}'
-	fi
-}
-
-set_max_freq() {
-	local freq
-	freq=$(echo "$1" | jsonfilter -e "@.freq" 2>/dev/null)
-
-	if [ -z "$freq" ]; then
-		echo '{"error":"missing freq parameter"}'
-		return
-	fi
-
-	# Validate freq is in available list
-	local avail=$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_available_frequencies 2>/dev/null)
-	if ! echo "$avail" | grep -qw "$freq"; then
-		printf '{"error":"invalid frequency: %s"}' "$freq"
-		return
-	fi
-
-	echo "$freq" > /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq 2>/dev/null
-	if [ $? -eq 0 ]; then
-		printf '{"result":"ok","freq":%d}' "$freq"
-	else
-		echo '{"error":"failed to set max frequency"}'
-	fi
-}
+# set_governor and set_max_freq were removed together with the control settings
+# on the NPU page: on this target they could never take effect. The CPU clock is
+# backed by a BL31 AVS call that answers 0, so cpufreq-dt registers no policy at
+# all — there is no governor to pick and no scaling_max_freq to write. Where a
+# firmware does provide cpufreq the write goes through the CPU power domain, and
+# that path tests only bit 0 of the SiP return value, which NOT_SUPPORTED (-2)
+# leaves clear: the change would report success while the PLL never moved. A
+# control that silently does nothing is worse than no control.
 
 # --- Offload toggles --------------------------------------------------------
 #
@@ -1823,7 +1826,7 @@ set_custom_curve() {
 
 case "$1" in
 	list)
-		echo '{"getOverview":{},"getStatus":{},"getPpeEntries":{},"getPpeSummary":{},"getTokenInfo":{},"getFrameEngine":{},"getTxStats":{},"getVlanOffload":{},"getFlowOffload":{},"getPppoeOffload":{},"getApModeOffload":{},"getDeviceMode":{},"getWanHealth":{},"getJitterResult":{},"getWifiStats":{},"getBridgeStats":{},"getNpuBypass":{},"getConflictAlerts":{},"getEthStats":{},"getPingTarget":{},"setPingTarget":{"target":"str"},"getFanStatus":{},"getFanCurve":{"preset":"str"},"getAllCurves":{},"setGovernor":{"governor":"str"},"setMaxFreq":{"freq":"int"},"setVlanOffload":{"enabled":"int"},"setPppoeOffload":{"enabled":"int"},"setFlowOffload":{"enabled":"int"},"setApModeOffload":{"enabled":"int"},"setFanMode":{"mode":"str"},"setManualPwm":{"pwm":"int"},"setFanPreset":{"preset":"str"},"setCustomCurve":{"points":"array"}}'
+		echo '{"getOverview":{},"getStatus":{},"getPpeEntries":{},"getPpeSummary":{},"getTokenInfo":{},"getFrameEngine":{},"getTxStats":{},"getVlanOffload":{},"getFlowOffload":{},"getPppoeOffload":{},"getApModeOffload":{},"getDeviceMode":{},"getWanHealth":{},"getJitterResult":{},"getWifiStats":{},"getBridgeStats":{},"getNpuBypass":{},"getConflictAlerts":{},"getEthStats":{},"getPingTarget":{},"setPingTarget":{"target":"str"},"getFanStatus":{},"getFanCurve":{"preset":"str"},"getAllCurves":{},"setVlanOffload":{"enabled":"int"},"setPppoeOffload":{"enabled":"int"},"setFlowOffload":{"enabled":"int"},"setApModeOffload":{"enabled":"int"},"setFanMode":{"mode":"str"},"setManualPwm":{"pwm":"int"},"setFanPreset":{"preset":"str"},"setCustomCurve":{"points":"array"}}'
 		;;
 	call)
 		# Nothing here declares these with "local": this case runs at the top
@@ -1904,14 +1907,6 @@ case "$1" in
 				;;
 			getAllCurves)
 				get_all_curves
-				;;
-			setGovernor)
-				read -r _arg
-				set_governor "$_arg"
-				;;
-			setMaxFreq)
-				read -r _arg
-				set_max_freq "$_arg"
 				;;
 			setVlanOffload)
 				read -r _arg

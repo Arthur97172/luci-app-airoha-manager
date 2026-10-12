@@ -7,8 +7,6 @@
 var callNpuStatus = rpc.declare({ object: 'luci.airoha_manager', method: 'getStatus' });
 var callTokenInfo = rpc.declare({ object: 'luci.airoha_manager', method: 'getTokenInfo' });
 var callFrameEngine = rpc.declare({ object: 'luci.airoha_manager', method: 'getFrameEngine' });
-var callSetGovernor = rpc.declare({ object: 'luci.airoha_manager', method: 'setGovernor', params: ['governor'] });
-var callSetMaxFreq = rpc.declare({ object: 'luci.airoha_manager', method: 'setMaxFreq', params: ['freq'] });
 var callGetVlanOffload = rpc.declare({ object: 'luci.airoha_manager', method: 'getVlanOffload' });
 var callSetVlanOffload = rpc.declare({ object: 'luci.airoha_manager', method: 'setVlanOffload', params: ['enabled'] });
 var callGetPppoeOffload = rpc.declare({ object: 'luci.airoha_manager', method: 'getPppoeOffload' });
@@ -45,11 +43,9 @@ var themeCSS = '\
 .npu-section h4{font-size:14px;line-height:1.4;font-weight:600;letter-spacing:0;margin-top:14px!important;padding-top:12px;border-top:1px solid var(--soc-border)}\
 .npu-details-table{margin:0}\
 .cpu-panel-grid{display:grid;grid-template-columns:minmax(250px,.85fr) minmax(360px,1.15fr);gap:8px}\
-.cpu-control-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-top:8px}\
 .cpu-panel-card{background:var(--soc-card-bg);border:1px solid var(--soc-border);border-left:3px solid var(--cpu-panel-accent,var(--soc-border));border-radius:8px;padding:11px 14px;min-height:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}\
 .cpu-panel-card.cpu-info{--cpu-panel-accent:#00c8ff}\
 .cpu-panel-card.cpu-frequency{--cpu-panel-accent:#00cc44}\
-.cpu-panel-card.cpu-controls{--cpu-panel-accent:#00c8ff}\
 .cpu-panel-title{font-size:11px;line-height:1.35;text-transform:uppercase;letter-spacing:0;color:var(--soc-muted);font-family:var(--airoha-font-ui);font-weight:600;margin-bottom:9px}\
 .cpu-panel-body{color:var(--soc-text);font-size:13px;line-height:1.5}\
 .cpu-info-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;line-height:1.5}\
@@ -57,10 +53,7 @@ var themeCSS = '\
 .cpu-freq-edge{font-family:var(--airoha-font-mono);font-size:12px;font-variant-numeric:tabular-nums;min-width:54px;text-align:center}\
 .cpu-freq-track{flex:1;height:28px!important;min-width:180px;max-width:none!important;position:relative;border-radius:6px!important}\
 .cpu-freq-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--airoha-font-mono);font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.65)}\
-.cpu-setting-controls{display:flex;align-items:center;gap:12px;flex-wrap:wrap}\
-.cpu-setting{display:flex;align-items:center;gap:8px;min-width:190px;flex:1}\
-.cpu-setting-label{font-size:12px;line-height:1.4;font-weight:500;color:var(--soc-muted);font-family:var(--airoha-font-ui);white-space:nowrap}\
-.cpu-setting .cbi-input-select{flex:1;min-width:0!important}\
+.cpu-freq-fixed{font-family:var(--airoha-font-mono);font-variant-numeric:tabular-nums;font-weight:700;font-size:18px;line-height:1.3;color:var(--soc-text)}\
 .npu-frame-wrap{margin-top:8px;border:1px solid var(--soc-border);border-radius:8px;padding:10px;background:var(--soc-card-bg)}\
 .fe-cdm-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:10px}\
 .fe-wifi-band-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}\
@@ -91,7 +84,7 @@ var themeCSS = '\
 .offload-on{color:#16a34a}\
 .offload-off{color:#6b7280}\
 .offload-blocked{color:#f59e0b}\
-@media(max-width:1050px){.npu-summary-grid{grid-template-columns:repeat(2,minmax(180px,1fr))}.offload-row{grid-template-columns:repeat(2,minmax(180px,1fr))}.cpu-panel-grid,.cpu-control-grid{grid-template-columns:1fr}}\
+@media(max-width:1050px){.npu-summary-grid{grid-template-columns:repeat(2,minmax(180px,1fr))}.offload-row{grid-template-columns:repeat(2,minmax(180px,1fr))}.cpu-panel-grid{grid-template-columns:1fr}}\
 @media(max-width:640px){.npu-summary-grid,.offload-row,.fe-cdm-grid,.fe-wifi-band-grid{grid-template-columns:1fr}.npu-section{padding:11px}.cpu-panel-card{padding:10px 12px}.cpu-freq-scale{gap:6px}.cpu-freq-edge{min-width:44px;font-size:10px}.offload-item{min-height:62px;padding:12px 14px}.offload-controls{min-width:132px}}\
 ';
 
@@ -437,13 +430,22 @@ function renderFeDiagram(fe, ti, st) {
 
 /* ── CPU Frequency ── */
 function freqBarState(hw, min, max, pll, gov) {
-	var oc = gov==='performance' && pll>0 && (pll*1000)>max;
-	return { freq: oc ? pll*1000 : Math.min(hw,max), max: oc ? pll*1000 : max, oc: oc };
+	var pll_khz = (pll || 0) * 1000;
+	// No cpufreq policy on this firmware — the BL31 AVS call behind the CPU
+	// clock answers 0, so cpufreq-dt registers nothing. The hardware PLL read
+	// is then the only frequency there is, and there is no range to scale
+	// against.
+	if (!max) return { freq: (!hw && pll_khz > 0) ? pll_khz : (hw || 0), max: 0, oc: false };
+	var oc = gov==='performance' && pll>0 && pll_khz>max;
+	return { freq: oc ? pll_khz : Math.min(hw,max), max: oc ? pll_khz : max, oc: oc };
 }
 
 function renderFreqBar(hw, min, max, pll, gov) {
-	if (!max) return E('span',{},'N/A');
 	var s = freqBarState(hw,min,max,pll,gov);
+	// Without a range a bar would only suggest a scalability this firmware does
+	// not have, so the reading is shown as a plain value instead.
+	if (!s.max)
+		return E('span', { 'id':'cpu-freq-text', 'class':'cpu-freq-fixed' }, s.freq ? fmtFreq(s.freq) : 'N/A');
 	var pct = Math.round(((s.freq-min)/(s.max-min))*100);
 	pct = Math.max(0,Math.min(100,pct));
 	var bg = s.oc ? 'linear-gradient(90deg,#e65100,#ff9800)' : 'linear-gradient(90deg,#2e7d32,#66bb6a)';
@@ -465,36 +467,6 @@ function updateFreqBar(hw, min, max, pll, gov) {
 	if (el) el.textContent = s.oc ? _('%s MHz (OC)').format(pll) : fmtFreq(s.freq);
 	if (fl && s.max>0) { var pct=Math.max(0,Math.min(100,Math.round(((s.freq-min)/(s.max-min))*100))); fl.style.width=pct+'%'; fl.style.background=s.oc?'linear-gradient(90deg,#e65100,#ff9800)':'linear-gradient(90deg,#2e7d32,#66bb6a)'; }
 	if (ml) ml.textContent = fmtFreq(s.max);
-}
-
-function governorLabel(governor) {
-	var labels = {
-		conservative: _('Conservative'),
-		ondemand: _('On-demand'),
-		performance: _('Performance'),
-		powersave: _('Powersave'),
-		schedutil: _('Schedutil'),
-		userspace: _('Userspace')
-	};
-	return labels[governor] || _(governor);
-}
-
-function renderGovSelect(avail, active) {
-	var gs = (avail||'').trim().split(/\s+/).filter(Boolean);
-	if (!gs.length) return E('span',{},'N/A');
-	return E('select', { 'id':'cpu-governor-select','class':'cbi-input-select','style':'min-width:140px','change':function(ev){
-		var g=ev.target.value; ev.target.disabled=true;
-		callSetGovernor(g).then(function(r){ev.target.disabled=false;if(r&&r.error) ui.addNotification(null,E('p',{},_('Error:') + ' '+r.error),'error');}).catch(function(){ev.target.disabled=false;});
-	}}, gs.map(function(g){return E('option',{'value':g,'selected':g===active?'':null},governorLabel(g));}));
-}
-
-function renderMaxFreqSelect(avail, cur) {
-	var fs = (avail||'').trim().split(/\s+/).filter(Boolean);
-	if (!fs.length) return E('span',{},'N/A');
-	return E('select', { 'id':'cpu-maxfreq-select','class':'cbi-input-select','style':'min-width:140px','change':function(ev){
-		var f=ev.target.value; ev.target.disabled=true;
-		callSetMaxFreq(parseInt(f)).then(function(r){ev.target.disabled=false;if(r&&r.error) ui.addNotification(null,E('p',{},_('Error:') + ' '+r.error),'error');}).catch(function(){ev.target.disabled=false;});
-	}}, fs.map(function(f){return E('option',{'value':f,'selected':parseInt(f)===parseInt(cur)?'':null},(parseInt(f)/1000).toFixed(0)+' MHz');}));
 }
 
 function offloadBadgeState(enabled, blocked) {
@@ -603,19 +575,6 @@ function buildCpuInfoContent(st) {
 	];
 }
 
-function buildControlSettingsContent(st) {
-	return E('div',{'class':'cpu-setting-controls'},[
-		E('div',{'class':'cpu-setting'},[
-			E('span',{'class':'cpu-setting-label'},_('Governor')),
-			renderGovSelect(st.cpu_avail_governors,st.cpu_governor)
-		]),
-		E('div',{'class':'cpu-setting'},[
-			E('span',{'class':'cpu-setting-label'},_('Max Freq')),
-			renderMaxFreqSelect(st.cpu_avail_freqs,st.cpu_max_freq)
-		])
-	]);
-}
-
 /* ── Main View ── */
 return view.extend({
 	load: function() {
@@ -646,12 +605,6 @@ return view.extend({
 					E('div',{'class':'cpu-panel-card cpu-frequency'},[
 						E('div',{'class':'cpu-panel-title'},_('Current Frequency')),
 						E('div',{'id':'cpu-freq-content','class':'cpu-panel-body'},renderFreqBar(st.cpu_hw_freq,st.cpu_min_freq,st.cpu_max_freq,st.pll_freq_mhz,st.cpu_governor))
-					])
-				]),
-				E('div',{'class':'cpu-control-grid'},[
-					E('div',{'class':'cpu-panel-card cpu-controls'},[
-						E('div',{'class':'cpu-panel-title'},_('Control Settings')),
-						E('div',{'id':'cpu-control-content','class':'cpu-panel-body'},buildControlSettingsContent(st))
 					])
 				])
 			]),
@@ -733,17 +686,6 @@ return view.extend({
 				} else {
 					var fc = document.getElementById('cpu-freq-content');
 					if (fc) { fc.innerHTML = ''; fc.appendChild(renderFreqBar(st.cpu_hw_freq,st.cpu_min_freq,st.cpu_max_freq,st.pll_freq_mhz,st.cpu_governor)); }
-				}
-
-				// Control settings — update values if selects exist, otherwise re-render container
-				var gs = document.getElementById('cpu-governor-select');
-				if (gs) {
-					if (!gs.matches(':focus')) gs.value = st.cpu_governor || '';
-					var fs = document.getElementById('cpu-maxfreq-select');
-					if (fs && !fs.matches(':focus')) fs.value = (st.cpu_max_freq || 0).toString();
-				} else {
-					var cc = document.getElementById('cpu-control-content');
-					if (cc) { cc.innerHTML = ''; cc.appendChild(buildControlSettingsContent(st)); }
 				}
 
 				updateOffloadControl('vlan-offload-select', 'vlan-offload-badge', vo.enabled, bridgeBlocked);

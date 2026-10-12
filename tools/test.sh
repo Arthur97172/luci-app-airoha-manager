@@ -264,7 +264,7 @@ chk "list -> exit 0" "0" "$?"
 if printf '%s' "$out" | is_json; then ok "list -> valid JSON"; else bad "list -> valid JSON" "$out"; fi
 
 nmethods=$(printf '%s' "$out" | jq_ 'len(d)')
-chk "list -> 34 methods" "34" "$nmethods"
+chk "list -> 32 methods" "32" "$nmethods"
 
 # Every method the list advertises must be dispatchable and must emit JSON.
 methods=$(printf '%s' "$out" | jq_ '" ".join(d)')
@@ -283,7 +283,7 @@ done
 for m in getOverview getPpeSummary getPpeEntries getFrameEngine getTokenInfo \
          getWifiStats getBridgeStats getConflictAlerts getEthStats getJitterResult \
          getFanStatus getFanCurve getAllCurves \
-         setGovernor setMaxFreq setFanMode setManualPwm setFanPreset setCustomCurve; do
+         setFanMode setManualPwm setFanPreset setCustomCurve; do
 	if printf '%s' "$methods" | grep -qw "$m"; then ok "list advertises $m"
 	else bad "list advertises $m"; fi
 done
