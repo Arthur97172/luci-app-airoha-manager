@@ -4,6 +4,11 @@
 /*
  * gen-i18n.js — regenerate .pot and .po from sources using the same
  * extraction logic as tools/check-i18n.js
+ *
+ * The catalogues carry no "#: file:line" reference comments: a reference is a
+ * position, and every position here goes stale on the next edit above it, so
+ * the files ship without them. Sources are still scanned — the msgid set and
+ * the ordering come from that scan — only the refs are dropped.
  */
 
 var fs = require('fs');
@@ -194,8 +199,6 @@ potLines.push('');
 
 var sortedMsgids = Array.from(byMsgid.keys()).sort();
 sortedMsgids.forEach(function(msgid) {
-	var refs = Array.from(byMsgid.get(msgid)).sort();
-	potLines.push('#: ' + refs.join(' '));
 	potLines.push('msgid ' + JSON.stringify(msgid));
 	potLines.push('msgstr ""');
 	potLines.push('');
@@ -263,9 +266,7 @@ poLines.push('"Plural-Forms: nplurals=1; plural=0;\\n"');
 poLines.push('');
 
 sortedMsgids.forEach(function(msgid) {
-	var refs = Array.from(byMsgid.get(msgid)).sort();
 	var msgstr = poByMsgid.get(msgid) || '';
-	poLines.push('#: ' + refs.join(' '));
 	poLines.push('msgid ' + JSON.stringify(msgid));
 	poLines.push('msgstr ' + JSON.stringify(msgstr));
 	poLines.push('');

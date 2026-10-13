@@ -3,13 +3,13 @@
 include $(TOPDIR)/rules.mk
 
 LUCI_NAME:=luci-app-airoha-manager
-PKG_VERSION:=1.0.1
-# 版本约定：每次提交 PKG_RELEASE +1（1.0.1-r1 ~ r9）；
-# 达到 r10 时 PKG_VERSION 末位 +1（1.0.1 -> 1.0.2），PKG_RELEASE 重置为 1。
+PKG_VERSION:=1.0.2
+# 版本约定：每次提交 PKG_RELEASE +1（1.0.2-r1 ~ r9）；
+# 达到 r10 时 PKG_VERSION 末位 +1（1.0.2 -> 1.0.3），PKG_RELEASE 重置为 1。
 #
 # PKG_VERSION is written out above rather than read from a ./VERSION file, so
 # "PKG_VERSION 末位 +1" means editing that line and setting this one back to 1.
-PKG_RELEASE:=6
+PKG_RELEASE:=1
 PKG_LICENSE:=GPL-3.0-only
 PKG_LICENSE_FILES:=LICENSE
 

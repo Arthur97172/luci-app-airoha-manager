@@ -227,7 +227,12 @@ var po = parsePo(fs.readFileSync(path.join(ROOT, 'po/zh_Hans/luci-app-airoha-man
 
 /* ---------- checks ---------- */
 
-/* 1. every msgid the sources carry is in the .pot, with exactly the right refs */
+/* 1. every msgid the sources carry is in the .pot.
+ *
+ * The .pot ships without "#:" reference comments (see tools/gen-i18n.js), so an
+ * entry that carries no refs is the normal case and there is nothing to compare;
+ * the two ref checks below run only on an entry that does carry them, which
+ * keeps them honest if references are ever put back. */
 var potByMsgid = new Map();
 pot.forEach(function(e) {
 	if (e.msgid === '') return;
@@ -238,6 +243,7 @@ pot.forEach(function(e) {
 byMsgid.forEach(function(refs, msgid) {
 	var e = potByMsgid.get(msgid);
 	if (!e) { fail('.pot is missing msgid ' + JSON.stringify(msgid) + ' (used at ' + [...refs].join(', ') + ')'); return; }
+	if (!e.refs.length) return;
 	var potRefs = new Set(e.refs);
 	refs.forEach(function(r) { if (!potRefs.has(r)) fail('.pot entry ' + JSON.stringify(msgid) + ' is missing reference ' + r); });
 	potRefs.forEach(function(r) { if (!refs.has(r)) fail('.pot entry ' + JSON.stringify(msgid) + ' has a stale reference ' + r); });

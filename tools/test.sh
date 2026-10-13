@@ -101,7 +101,7 @@ for blk in conffiles postinst prerm; do
 	fi
 done
 
-for key in 'LUCI_NAME:=luci-app-airoha-manager' 'PKG_VERSION:=1.0.1' 'PKG_LICENSE:=GPL-3.0-only' \
+for key in 'LUCI_NAME:=luci-app-airoha-manager' 'PKG_VERSION:=1.0.2' 'PKG_LICENSE:=GPL-3.0-only' \
            'PKG_LICENSE_FILES:=LICENSE'; do
 	if grep -qxF "$key" "$MAKEFILE"; then ok "Makefile declares $key"
 	else bad "Makefile declares $key"; fi
