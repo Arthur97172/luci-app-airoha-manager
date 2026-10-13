@@ -42,16 +42,19 @@ var themeCSS = '\
 .npu-section>h3{font-size:16px;line-height:1.4;font-weight:600;letter-spacing:0;margin:0 0 12px;padding:0 0 8px;border-bottom:1px solid var(--soc-border);color:var(--soc-text)}\
 .npu-section h4{font-size:14px;line-height:1.4;font-weight:600;letter-spacing:0;margin-top:14px!important;padding-top:12px;border-top:1px solid var(--soc-border)}\
 .npu-details-table{margin:0}\
-.cpu-panel-grid{display:grid;grid-template-columns:minmax(250px,.85fr) minmax(360px,1.15fr);gap:8px}\
-.cpu-panel-card{background:var(--soc-card-bg);border:1px solid var(--soc-border);border-left:3px solid var(--cpu-panel-accent,var(--soc-border));border-radius:8px;padding:11px 14px;min-height:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}\
+.cpu-panel-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}\
+.cpu-panel-card{background:var(--soc-card-bg);border:1px solid var(--soc-border);border-left:3px solid var(--cpu-panel-accent,var(--soc-border));border-radius:8px;padding:11px 14px;min-width:0;min-height:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}\
 .cpu-panel-card.cpu-info{--cpu-panel-accent:#00c8ff}\
+.cpu-panel-card.cpu-platform{--cpu-panel-accent:#a855f7}\
+.cpu-panel-card.cpu-arch{--cpu-panel-accent:#f5a623}\
 .cpu-panel-card.cpu-frequency{--cpu-panel-accent:#00cc44}\
 .cpu-panel-title{font-size:11px;line-height:1.35;text-transform:uppercase;letter-spacing:0;color:var(--soc-muted);font-family:var(--airoha-font-ui);font-weight:600;margin-bottom:9px}\
 .cpu-panel-body{color:var(--soc-text);font-size:13px;line-height:1.5}\
 .cpu-info-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;line-height:1.5}\
+.cpu-panel-value{font-weight:600;overflow-wrap:anywhere}\
 .cpu-freq-scale{display:flex;align-items:center;gap:10px;width:100%}\
 .cpu-freq-edge{font-family:var(--airoha-font-mono);font-size:12px;font-variant-numeric:tabular-nums;min-width:54px;text-align:center}\
-.cpu-freq-track{flex:1;height:28px!important;min-width:180px;max-width:none!important;position:relative;border-radius:6px!important}\
+.cpu-freq-track{flex:1;height:28px!important;min-width:0;max-width:none!important;position:relative;border-radius:6px!important}\
 .cpu-freq-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--airoha-font-mono);font-variant-numeric:tabular-nums;font-weight:700;font-size:14px;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.65)}\
 .cpu-freq-fixed{font-family:var(--airoha-font-mono);font-variant-numeric:tabular-nums;font-weight:700;font-size:18px;line-height:1.3;color:var(--soc-text)}\
 .npu-frame-wrap{margin-top:8px;border:1px solid var(--soc-border);border-radius:8px;padding:10px;background:var(--soc-card-bg)}\
@@ -84,8 +87,8 @@ var themeCSS = '\
 .offload-on{color:#16a34a}\
 .offload-off{color:#6b7280}\
 .offload-blocked{color:#f59e0b}\
-@media(max-width:1050px){.npu-summary-grid{grid-template-columns:repeat(2,minmax(180px,1fr))}.offload-row{grid-template-columns:repeat(2,minmax(180px,1fr))}.cpu-panel-grid{grid-template-columns:1fr}}\
-@media(max-width:640px){.npu-summary-grid,.offload-row,.fe-cdm-grid,.fe-wifi-band-grid{grid-template-columns:1fr}.npu-section{padding:11px}.cpu-panel-card{padding:10px 12px}.cpu-freq-scale{gap:6px}.cpu-freq-edge{min-width:44px;font-size:10px}.offload-item{min-height:62px;padding:12px 14px}.offload-controls{min-width:132px}}\
+@media(max-width:1050px){.npu-summary-grid{grid-template-columns:repeat(2,minmax(180px,1fr))}.offload-row{grid-template-columns:repeat(2,minmax(180px,1fr))}.cpu-panel-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}\
+@media(max-width:640px){.npu-summary-grid,.offload-row,.fe-cdm-grid,.fe-wifi-band-grid,.cpu-panel-grid{grid-template-columns:1fr}.npu-section{padding:11px}.cpu-panel-card{padding:10px 12px}.cpu-freq-scale{gap:6px}.cpu-freq-edge{min-width:44px;font-size:10px}.offload-item{min-height:62px;padding:12px 14px}.offload-controls{min-width:132px}}\
 ';
 
 function isDarkMode() {
@@ -566,13 +569,13 @@ function renderOffloadSelect(enabled, id, callFn, badgeId, blocked) {
 
 /* ── Reusable CPU info builders (used by initial render AND live updates) ── */
 function buildCpuInfoContent(st) {
-	return [
-		E('span',{'style':'font-weight:600'}, (st.soc_compat||'')),
-		E('span',{'style':'color:#999'}, '·'),
-		E('span',{}, (st.cpu_arch||'')),
-		st.cpu_temp && st.cpu_temp!=='N/A' ? E('span',{}, '(' + st.cpu_temp + ')') : null,
-		E('span',{'style':'color:#999'}, _('%d cores').format(st.cpu_count||0))
-	];
+	var out = [];
+	if (st.cpu_model) {
+		out.push(E('span',{'style':'font-weight:600'}, st.cpu_model));
+		out.push(E('span',{'style':'color:#999'}, '·'));
+	}
+	out.push(E('span',{}, _('%d cores').format(st.cpu_count||0)));
+	return out;
 }
 
 /* ── Main View ── */
@@ -594,13 +597,21 @@ return view.extend({
 
 		var view = E('div',{'class':'cbi-map npu-dashboard'},[
 
-			// CPU Frequency
+			// Basic information
 			E('div',{'class':'cbi-section npu-section'},[
-				E('h3',{},_('CPU Frequency')),
+				E('h3',{},_('Basic Information')),
 				E('div',{'class':'cpu-panel-grid'},[
 					E('div',{'class':'cpu-panel-card cpu-info'},[
 						E('div',{'class':'cpu-panel-title'},_('CPU Info')),
 						E('div',{'id':'cpu-info-content','class':'cpu-panel-body cpu-info-line'},buildCpuInfoContent(st))
+					]),
+					E('div',{'class':'cpu-panel-card cpu-platform'},[
+						E('div',{'class':'cpu-panel-title'},_('Platform')),
+						E('div',{'id':'cpu-platform-content','class':'cpu-panel-body cpu-panel-value'},(st.cpu_platform||''))
+					]),
+					E('div',{'class':'cpu-panel-card cpu-arch'},[
+						E('div',{'class':'cpu-panel-title'},_('Architecture')),
+						E('div',{'id':'cpu-arch-content','class':'cpu-panel-body cpu-panel-value'},(st.cpu_arch||''))
 					]),
 					E('div',{'class':'cpu-panel-card cpu-frequency'},[
 						E('div',{'class':'cpu-panel-title'},_('Current Frequency')),
@@ -678,6 +689,13 @@ return view.extend({
 				// CPU info — always re-render (just text spans, no user interaction)
 				var ci = document.getElementById('cpu-info-content');
 				if (ci) { ci.innerHTML = ''; buildCpuInfoContent(st).forEach(function(el) { if (el) ci.appendChild(el); }); }
+
+				// Platform and architecture — fixed for the life of the boot, but
+				// the first paint happens before the RPC answers, so fill them in.
+				var cp = document.getElementById('cpu-platform-content');
+				if (cp) cp.textContent = st.cpu_platform||'';
+				var ca = document.getElementById('cpu-arch-content');
+				if (ca) ca.textContent = st.cpu_arch||'';
 
 				// Freq bar — update in-place if elements exist, otherwise re-render container
 				var freqText = document.getElementById('cpu-freq-text');

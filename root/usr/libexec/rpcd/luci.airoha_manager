@@ -81,6 +81,78 @@ _pll_mhz() {
 	printf '%s' "$mhz"
 }
 
+# Name a CPU core from its identification. $1 is either the MIDR part number as
+# /proc/cpuinfo prints it ("0xd03") or the CPU node's device-tree compatible
+# string ("arm,cortex-a53"); the part numbers are Arm's, so the core is named
+# from the number alone. Prints nothing for a core it cannot name, so no caller
+# ever shows a guess.
+_cpu_model_name() {
+	local key
+
+	key=$(printf '%s' "$1" | tr 'A-F' 'a-f')
+	case "$key" in
+		*,*) key=${key#*,} ;;   # arm,cortex-a53 -> cortex-a53
+	esac
+
+	case "$key" in
+		0xd03|cortex-a53)  printf '%s' 'Arm Cortex-A53' ;;
+		0xd04|cortex-a35)  printf '%s' 'Arm Cortex-A35' ;;
+		0xd05|cortex-a55)  printf '%s' 'Arm Cortex-A55' ;;
+		0xd07|cortex-a57)  printf '%s' 'Arm Cortex-A57' ;;
+		0xd08|cortex-a72)  printf '%s' 'Arm Cortex-A72' ;;
+		0xd09|cortex-a73)  printf '%s' 'Arm Cortex-A73' ;;
+		0xd0a|cortex-a75)  printf '%s' 'Arm Cortex-A75' ;;
+		0xd0b|cortex-a76)  printf '%s' 'Arm Cortex-A76' ;;
+		0xd0c|neoverse-n1) printf '%s' 'Arm Neoverse N1' ;;
+		0xd0d|cortex-a77)  printf '%s' 'Arm Cortex-A77' ;;
+		0xd41|cortex-a78)  printf '%s' 'Arm Cortex-A78' ;;
+		0xd44|cortex-x1)   printf '%s' 'Arm Cortex-X1' ;;
+		0xd46|cortex-a510) printf '%s' 'Arm Cortex-A510' ;;
+		0xd47|cortex-a710) printf '%s' 'Arm Cortex-A710' ;;
+		0xd48|cortex-x2)   printf '%s' 'Arm Cortex-X2' ;;
+		0xd4d|cortex-a715) printf '%s' 'Arm Cortex-A715' ;;
+		0xd4e|cortex-x3)   printf '%s' 'Arm Cortex-X3' ;;
+		0xd80|cortex-a520) printf '%s' 'Arm Cortex-A520' ;;
+		0xd81|cortex-a720) printf '%s' 'Arm Cortex-A720' ;;
+		0xd82|cortex-x4)   printf '%s' 'Arm Cortex-X4' ;;
+		*) printf '' ;;
+	esac
+}
+
+# The CPU model as the running kernel reports it, e.g. "Arm Cortex-A53".
+#
+# /proc/cpuinfo is the source. On arm64 it has no "model name" line — the
+# kernel only prints that one for a 32-bit userspace, which is why the grep for
+# it that used to live here always came back empty — but it does print "CPU
+# part", the MIDR_EL1 part number, for every core. A part number that names no
+# core we know falls back to the CPU node's own compatible string in the
+# kernel's device tree, the same description base-files reads for /tmp/sysinfo.
+# $1 overrides the cpuinfo file, so the helper can be exercised against one.
+_cpu_model() {
+	local f="${1:-/proc/cpuinfo}" part compat name
+
+	part=$(awk -F': *' '/^CPU part/ { print $2; exit }' "$f" 2>/dev/null)
+	name=$(_cpu_model_name "$part")
+
+	if [ -z "$name" ] && [ -r /proc/device-tree/cpus/cpu@0/compatible ]; then
+		compat=$(tr '\000' '\n' < /proc/device-tree/cpus/cpu@0/compatible 2>/dev/null | head -1)
+		name=$(_cpu_model_name "$compat")
+	fi
+
+	printf '%s' "$name"
+}
+
+# The platform the firmware was built for, e.g. "airoha/an7581": DISTRIB_TARGET
+# in /etc/openwrt_release, the "<board>/<subtarget>" pair OpenWrt substitutes
+# into it (include/version.mk). $1 overrides the file, so the helper can be
+# exercised against a fixture.
+_cpu_platform() {
+	local f="${1:-/etc/openwrt_release}"
+
+	[ -r "$f" ] || return 0
+	grep -m1 '^DISTRIB_TARGET=' "$f" 2>/dev/null | cut -d= -f2- | tr -d "'"
+}
+
 # Run an external command under a wall-clock deadline. A read of a wedged PPE
 # block does not return, and rpcd would hang with it. The tag argument is
 # accepted for call-site symmetry and is not used.
@@ -339,36 +411,20 @@ get_status() {
 		cpu_count=$(ls -d /sys/devices/system/cpu/cpu[0-9]* 2>/dev/null | wc -l)
 	fi
 
-	# CPU architecture and temperature, from luci.airoha_npu: only the NPU page
-	# shows them, but they ride along in the one status call both pages make.
-	local cpu_arch=""
-	if [ -f "/proc/cpuinfo" ]; then
-		cpu_arch=$(grep -m1 "model name" /proc/cpuinfo | awk -F': ' '{print $2}')
-	fi
+	# CPU model, platform and architecture, from luci.airoha_npu: only the NPU
+	# page shows them, but they ride along in the one status call both pages
+	# make. All three are read from the system rather than assumed: the model
+	# from the core's own identification, the platform from the release this
+	# firmware was built for, the architecture from the kernel.
+	local cpu_model cpu_platform cpu_arch
+	cpu_model=$(_cpu_model)
+	cpu_platform=$(_cpu_platform)
+	cpu_arch=$(uname -m 2>/dev/null)
 
-	local cpu_temp="N/A"
-	local zone type
-	for zone in /sys/class/thermal/thermal_zone*; do
-		if [ -f "$zone/temp" ] && [ -f "$zone/type" ]; then
-			type=$(cat "$zone/type")
-			if echo "$type" | grep -q -i "cpu"; then
-				cpu_temp=$(cat "$zone/temp" 2>/dev/null)
-				if [ -n "$cpu_temp" ] && [ "$cpu_temp" -gt 0 ]; then
-					cpu_temp="$((cpu_temp/1000)).0°C"
-				else
-					cpu_temp="N/A"
-				fi
-				break
-			fi
-		fi
-	done
-
-	local soc_compat="airoha an7581"
-
-	printf '{"npu_version":"%s","npu_loaded":%s,"npu_device":"%s","npu_clock":%d,"npu_cores":%d,"offload_bound":%d,"offload_total":%d,"memory_regions":%s,"cpu_cur_freq":%d,"cpu_hw_freq":%d,"cpu_governor":"%s","cpu_avail_governors":"%s","cpu_min_freq":%d,"cpu_max_freq":%d,"cpu_avail_freqs":"%s","cpu_count":%d,"pll_freq_mhz":%d,"cpu_arch":"%s","cpu_temp":"%s","soc_compat":"%s"}' \
+	printf '{"npu_version":"%s","npu_loaded":%s,"npu_device":"%s","npu_clock":%d,"npu_cores":%d,"offload_bound":%d,"offload_total":%d,"memory_regions":%s,"cpu_cur_freq":%d,"cpu_hw_freq":%d,"cpu_governor":"%s","cpu_avail_governors":"%s","cpu_min_freq":%d,"cpu_max_freq":%d,"cpu_avail_freqs":"%s","cpu_count":%d,"pll_freq_mhz":%d,"cpu_model":"%s","cpu_platform":"%s","cpu_arch":"%s"}' \
 		"${npu_ver:-Unknown}" "$npu_loaded" "${npu_device:-}" "${npu_clock:-0}" "${npu_cores:-0}" "${offload_bound:-0}" "${offload_total:-0}" "$regions" \
 		"${cpu_cur_freq:-0}" "${cpu_hw_freq:-0}" "${cpu_governor:-unknown}" "${cpu_avail_governors:-}" "${cpu_min_freq:-0}" "${cpu_max_freq:-0}" "${cpu_avail_freqs:-}" "${cpu_count:-0}" "${pll_freq:-0}" \
-		"${cpu_arch:-}" "${cpu_temp:-N/A}" "${soc_compat:-}"
+		"${cpu_model:-}" "${cpu_platform:-}" "${cpu_arch:-}"
 }
 
 # Bound/unbound PPE totals plus the per-band breakdown, from
