@@ -39,6 +39,9 @@ var themeCSS = '\
 .npu-summary-value{font-size:20px;line-height:1.15;font-family:var(--airoha-font-mono);font-variant-numeric:tabular-nums;font-weight:700}\
 .npu-summary-sub{font-size:12px;line-height:1.4;color:var(--soc-muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\
 .npu-section{background:var(--soc-card-bg);border:1px solid var(--soc-border);border-radius:8px;padding:14px;margin:12px 0!important}\
+/* Argon lays .cbi-map out as a flex column with a 1rem gap ("display:flex;flex-direction:column;gap:1rem"), and a flex gap does not collapse with margins the way adjacent block margins do -- so the 12px each section asks for arrived as 12 + 16 + 12 = 40px of blank space between the two cards. Cancel the gap inside our own map and drop the top margin on every section but the first: the cards then sit the 12px apart this sheet means, and the first keeps the spacing it had under the page title. Both rules are inert on a theme that leaves .cbi-map a block, where the margins already collapse to the same 12px. */\
+.cbi-map.npu-dashboard{row-gap:0}\
+.npu-section+.npu-section{margin-top:0!important}\
 .npu-section>h3{font-size:16px;line-height:1.4;font-weight:600;letter-spacing:0;margin:0 0 12px;padding:0 0 8px;border-bottom:1px solid var(--soc-border);color:var(--soc-text)}\
 .npu-section h4{font-size:14px;line-height:1.4;font-weight:600;letter-spacing:0;margin-top:14px!important;padding-top:12px;border-top:1px solid var(--soc-border)}\
 .npu-details-table{margin:0}\

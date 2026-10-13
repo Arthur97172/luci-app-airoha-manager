@@ -27,6 +27,9 @@ var themeCSS = '\
 .fan-card-value{font-size:20px;line-height:1.15;font-family:var(--airoha-font-mono);font-variant-numeric:tabular-nums;font-weight:700;color:var(--fan-accent,var(--fan-text))}\
 .fan-card-sub{font-size:12px;line-height:1.4;color:var(--fan-muted);margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\
 .fan-panel{padding:14px;margin:12px 0}\
+/* The same 1rem flex gap Argon puts on .cbi-map as in npu.js: the two panels sat 12 + 16 + 12 = 40px apart. Cancel the gap in this map and drop the top margin on the second panel, which leaves the 12px the margin asks for. */\
+.cbi-map.fan-dashboard{row-gap:0}\
+.fan-panel+.fan-panel{margin-top:0}\
 .fan-panel-title{font-size:16px;line-height:1.4;font-weight:600;letter-spacing:0;color:var(--fan-text);padding:0 0 8px;margin:0 0 12px;border-bottom:1px solid var(--fan-border)}\
 .fan-chart-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}\
 .fan-chart-card{border-left:3px solid var(--fan-chart-accent,var(--fan-border));padding:10px 12px;min-width:0}\

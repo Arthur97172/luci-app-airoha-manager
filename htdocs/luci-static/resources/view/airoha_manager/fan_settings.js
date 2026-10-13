@@ -34,6 +34,9 @@ var settingsCSS = '\
 .fan-settings .fan-control-section [data-name="_curve_graph"] .cbi-value-title{margin-bottom:8px}\
 /* Themes right-align the label against its field. With the label on a full-width row of its own that pushes the text to the far right, so pin both to the start of the line, level with the preview label. */\
 .fan-settings .fan-control-section .cbi-value-title,.fan-settings .fan-control-section .cbi-value-field{text-align:left}\
+/* Two gaps in this section are wider than the sheet asks for, both because Argon stacks a flex gap on padding the rows already carry. Its ".cbi-section-node{display:flex;flex-direction:column;gap:0.875rem}" puts 14px between every pair of rows, so the Mode select and the Fan Curve Preset row under it stood 12 + 1 + 14 + 12 = 39px apart; drop the gap here and the 12px of padding each row carries, either side of the 1px rule, is what separates them. The heading is the other: its 14px margin-bottom landed on top of the 12px padding-top of the first row, 26px below the rule under the title. The heading already carries 12px of its own padding above that rule, so taking the margin away leaves the rule the same distance from the title and from the first row. */\
+.fan-settings .fan-control-section>.cbi-section-node{row-gap:0}\
+.fan-settings .fan-control-section>h3{margin-bottom:0!important}\
 .fan-curve-wrap{max-width:none;border:1px solid var(--fan-border);border-left:4px solid var(--fan-blue);border-radius:10px;padding:12px;background:linear-gradient(145deg,var(--fan-input-bg),var(--fan-card-bg));box-shadow:inset 0 0 0 1px rgba(0,200,255,.06)}\
 .fan-curve-canvas{display:block;width:100%;height:362px;background:var(--fan-canvas-bg);border:1px solid var(--fan-border);border-radius:7px;box-sizing:border-box}\
 .fan-settings .fan-curve-section{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}\
